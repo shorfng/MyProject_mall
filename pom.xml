@@ -18,7 +18,11 @@
     <description>SpringCloud Alibaba 云商城</description>
 
     <modules>
-        <module>mall-api</module>
+        <module>mall-api</module>      <!-- 存储所有数据库表对应的Bean和Feign接口 -->
+        <module>mall-gateway</module>  <!-- 存储所有微服务网关 -->
+        <module>mall-service</module>  <!-- 存储所有微服务工程-->
+        <module>mall-util</module>     <!-- 存储公共工程 -->
+        <module>mall-web</module>      <!-- 存储所有和页面渲染有关的工程 -->
     </modules>
 
     <properties>
