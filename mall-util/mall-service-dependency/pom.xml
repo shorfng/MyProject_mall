@@ -10,6 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mall-service-dependency</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <description>所有微服务工程公共依赖包、所有微服务工程公共配置类</description>
 
     <properties>
@@ -24,11 +25,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--MyBatis Plus-->
+        <!-- MyBatis Plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.3.4</version>
+            <version>3.3.2</version>
         </dependency>
 
         <!--MySQL-->

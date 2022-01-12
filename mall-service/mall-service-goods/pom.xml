@@ -3,19 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>MyProject_mall</artifactId>
+        <artifactId>mall-service</artifactId>
         <groupId>com.loto.mall</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>mall-api</artifactId>
-    <packaging>pom</packaging>
-    <description>所有数据库表对应的Bean和Feign接口</description>
-
-    <modules>
-        <module>mall-api-goods</module>
-    </modules>
+    <artifactId>mall-service-goods</artifactId>
+    <description>shop_goods数据库的增删改查</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -23,12 +18,11 @@
     </properties>
 
     <dependencies>
-        <!-- MyBatis Plus -->
+        <!-- mall-api-goods -->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.3.2</version>
-            <scope>provided</scope>
+            <groupId>com.loto.mall</groupId>
+            <artifactId>mall-api-goods</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
