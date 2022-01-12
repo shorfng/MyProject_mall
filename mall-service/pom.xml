@@ -15,6 +15,7 @@
 
     <modules>
         <module>mall-service-goods</module>
+        <module>mall-service-cephfile</module>
     </modules>
 
     <properties>
