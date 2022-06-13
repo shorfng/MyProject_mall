@@ -220,11 +220,11 @@ INSERT INTO `category` VALUES ('11181', 'fdf', null, null);
 DROP TABLE IF EXISTS `category_attr`;
 CREATE TABLE `category_attr`
 (
-    `category_id` int(11) NOT NULL,
-    `attr_id`     int(11) NOT NULL COMMENT '属性分类表',
+    `category_id` int(11) NOT NULL COMMENT '分类id',
+    `attr_id`     int(11) NOT NULL COMMENT '属性id',
     PRIMARY KEY (`category_id`, `attr_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  DEFAULT CHARSET = utf8 COMMENT ='分类属性表';
 
 -- ----------------------------
 -- Records of category_attr
@@ -280,7 +280,7 @@ CREATE TABLE `category_brand`
     `brand_id`    int(11) NOT NULL COMMENT '品牌ID',
     PRIMARY KEY (`brand_id`, `category_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  DEFAULT CHARSET = utf8 COMMENT ='分类品牌关系表';
 
 -- ----------------------------
 -- Records of category_brand
@@ -319,7 +319,7 @@ CREATE TABLE `sku`
     KEY `status` (`status`),
     KEY `updated` (`update_time`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8 COMMENT ='商品表';
+  DEFAULT CHARSET = utf8 COMMENT ='商品表（每个产品信息）';
 
 -- ----------------------------
 -- Records of sku
@@ -347,7 +347,7 @@ CREATE TABLE `sku_attribute`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 13
-  DEFAULT CHARSET = utf8;
+  DEFAULT CHARSET = utf8 COMMENT ='属性表';
 
 -- ----------------------------
 -- Records of sku_attribute
@@ -383,7 +383,7 @@ CREATE TABLE `spu`
     `status`              int(1)        DEFAULT '0' COMMENT '审核状态，0：未审核，1：已审核，2：审核不通过',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  DEFAULT CHARSET = utf8 COMMENT ='商品表（同类产品信息）';
 
 -- ----------------------------
 -- Records of spu

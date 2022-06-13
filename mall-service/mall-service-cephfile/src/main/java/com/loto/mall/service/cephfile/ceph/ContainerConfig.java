@@ -10,6 +10,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Author：蓝田_Loto<p>
+ * Function：Ceph 账户信息配置类
+ */
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "ceph")

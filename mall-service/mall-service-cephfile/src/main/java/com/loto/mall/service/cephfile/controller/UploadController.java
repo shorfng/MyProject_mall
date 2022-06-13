@@ -38,6 +38,7 @@ public class UploadController {
         // 调用
         byte[] buffer = fileHandler.download(filename);
         ServletOutputStream os = response.getOutputStream();
+
         os.write(buffer);
         os.flush();
         os.close();

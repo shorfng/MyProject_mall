@@ -5,6 +5,11 @@ import org.javaswift.joss.model.StoredObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Author：蓝田_Loto<p>
+ * Function：文件上传下载工具类
+ */
+
 @Component
 public class FileHandler {
     @Autowired
