@@ -5,6 +5,7 @@ import com.loto.mall.api.goods.model.Brand;
 import com.loto.mall.service.goods.service.IBrandService;
 import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,45 +24,35 @@ public class BrandController {
     @Autowired
     private IBrandService brandService;
 
-    /**
-     * 增加方法
-     */
+    @ApiOperation(value = "增加品牌信息")
     @PostMapping
     public RespResult add(@RequestBody Brand brand) {
         brandService.save(brand);
         return RespResult.ok();
     }
 
-    /**
-     * 修改方法
-     */
+    @ApiOperation(value = "修改品牌信息")
     @PutMapping
     public RespResult update(@RequestBody Brand brand) {
         brandService.updateById(brand);
         return RespResult.ok();
     }
 
-    /**
-     * 删除方法
-     */
+    @ApiOperation(value = "删除品牌信息（根据品牌id）")
     @DeleteMapping("/{id}")
     public RespResult delete(@PathVariable(value = "id") String id) {
         brandService.removeById(id);
         return RespResult.ok();
     }
 
-    /**
-     * 条件查询
-     */
+    @ApiOperation(value = "查询品牌信息（根据条件查询）")
     @PostMapping(value = "/search")
     public RespResult<List<Brand>> queryList(@RequestBody Brand brand) {
         List<Brand> brands = brandService.queryList(brand);
         return RespResult.ok(brands);
     }
 
-    /**
-     * 分页查询
-     */
+    @ApiOperation(value = "查询品牌信息（分页查询）")
     @PostMapping(value = "/search/{page}/{size}")
     public RespResult<Page<Brand>> queryPageList(
             @PathVariable(value = "page") Long page,
