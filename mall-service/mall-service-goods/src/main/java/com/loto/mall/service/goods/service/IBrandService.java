@@ -16,4 +16,11 @@ public interface IBrandService extends IService<Brand> {
      * 分页查询
      */
     Page<Brand> queryPageList(Brand brand, Long currentPage, Long size);
+
+    /**
+     * 查询品牌信息（根据分类ID）
+     * @param parentId
+     * @return
+     */
+    List<Brand> queryByCategoryId(Integer parentId);
 }

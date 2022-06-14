@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -61,5 +62,12 @@ public class BrandController {
 
         Page<Brand> pageInfo = brandService.queryPageList(brand, page, size);
         return RespResult.ok(pageInfo);
+    }
+
+    @ApiOperation(value = "查询品牌信息（根据分类ID）")
+    @GetMapping(value = "/category/{parentId}")
+    public RespResult<List<Brand>> categoryBrands(@PathVariable(value = "parentId") Integer parentId) {
+        List<Brand> brands = brandService.queryByCategoryId(parentId);
+        return RespResult.ok(brands);
     }
 }
