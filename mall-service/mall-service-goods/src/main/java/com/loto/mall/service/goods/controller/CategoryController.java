@@ -1,7 +1,17 @@
 package com.loto.mall.service.goods.controller;
 
+import com.loto.mall.api.goods.model.Category;
+import com.loto.mall.service.goods.service.ICategoryService;
+import com.loto.mall.util.common.RespResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,6 +23,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/category")
+@Api(value = "CategoryController", tags = "商品类目")
 public class CategoryController {
+    @Autowired
+    private ICategoryService categoryService;
 
+    @ApiOperation(value = "查询所有子类（根据分类的 parentId）")
+    @GetMapping(value = "/parent/{parentId}")
+    public RespResult<List<Category>> findByParentId(@PathVariable("parentId") Integer parentId) {
+        return RespResult.ok(categoryService.findByParentId(parentId));
+    }
 }
