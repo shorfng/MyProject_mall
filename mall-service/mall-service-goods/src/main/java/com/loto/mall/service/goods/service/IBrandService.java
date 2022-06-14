@@ -6,7 +6,7 @@ import com.loto.mall.api.goods.model.Brand;
 
 import java.util.List;
 
-public interface BrandService extends IService<Brand> {
+public interface IBrandService extends IService<Brand> {
     /**
      * 条件查询
      */

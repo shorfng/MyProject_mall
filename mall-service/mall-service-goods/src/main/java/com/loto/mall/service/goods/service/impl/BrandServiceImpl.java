@@ -5,14 +5,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.loto.mall.api.goods.model.Brand;
 import com.loto.mall.service.goods.mapper.BrandMapper;
-import com.loto.mall.service.goods.service.BrandService;
+import com.loto.mall.service.goods.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements BrandService {
+public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements IBrandService {
     @Autowired
     private BrandMapper brandMapper;
 

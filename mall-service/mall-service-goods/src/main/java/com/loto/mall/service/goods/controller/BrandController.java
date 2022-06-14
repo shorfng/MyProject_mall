@@ -2,8 +2,9 @@ package com.loto.mall.service.goods.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.loto.mall.api.goods.model.Brand;
-import com.loto.mall.service.goods.service.BrandService;
+import com.loto.mall.service.goods.service.IBrandService;
 import com.loto.mall.util.common.RespResult;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +18,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/brand")
+@Api(value = "BrandController", tags = "品牌管理")
 public class BrandController {
     @Autowired
-    private BrandService brandService;
+    private IBrandService brandService;
 
     /**
      * 增加方法

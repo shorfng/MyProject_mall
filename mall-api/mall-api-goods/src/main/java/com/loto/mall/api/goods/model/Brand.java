@@ -1,47 +1,42 @@
 package com.loto.mall.api.goods.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.baomidou.mybatisplus.annotation.TableField;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
- * Author：蓝田_Loto
- * <p>Date：2022-01-11 17:55</p>
- * <p>PageName：Brand.java</p>
- * <p>Function：品牌</p>
+ * <p>
+ * 品牌表
+ * </p>
+ *
+ * @author 蓝田_Loto
+ * @since 2022-06-13 22:42:39
  */
+@Getter
+@Setter
+@ApiModel(value = "Brand对象", description = "品牌表")
+public class Brand implements Serializable {
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@TableName(value = "brand")
-public class Brand {
-    /**
-     * 品牌 id（主键）
-     */
-    @TableId(type = IdType.AUTO)
-    private Integer id;
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * 品牌名字
-     */
+    @ApiModelProperty("品牌名称")
     private String name;
 
-    /**
-     * 品牌图片
-     */
+    @ApiModelProperty("品牌图片地址")
     private String image;
 
-    /**
-     * 品牌首字母
-     */
+    @ApiModelProperty("品牌的首字母")
     private String initial;
 
-    /**
-     * 排序
-     */
+    @ApiModelProperty("排序")
     private Integer sort;
+
+    @ApiModelProperty("分类")
+    @TableField(exist = false)
+    private List<Category> categories;
 }
