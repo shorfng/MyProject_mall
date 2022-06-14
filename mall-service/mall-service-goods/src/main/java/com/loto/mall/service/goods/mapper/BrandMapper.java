@@ -2,10 +2,12 @@ package com.loto.mall.service.goods.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.loto.mall.api.goods.model.Brand;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+@Mapper
 public interface BrandMapper extends BaseMapper<Brand> {
     /**
      * 查询品牌信息（根据分类ID）

@@ -1,5 +1,6 @@
 package com.loto.mall.api.goods.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -33,5 +35,7 @@ public class SkuAttribute implements Serializable {
     @ApiModelProperty("排序")
     private Integer sort;
 
-
+    @ApiModelProperty("属性对应的分类")
+    @TableField(exist = false)
+    private List<Category> categories;
 }
