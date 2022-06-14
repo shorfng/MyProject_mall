@@ -21,7 +21,6 @@ import java.io.Serializable;
 @TableName("category_attr")
 @ApiModel(value = "CategoryAttr对象", description = "分类属性表")
 public class CategoryAttr implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("分类id")
@@ -29,6 +28,4 @@ public class CategoryAttr implements Serializable {
 
     @ApiModelProperty("属性id")
     private Integer attrId;
-
-
 }

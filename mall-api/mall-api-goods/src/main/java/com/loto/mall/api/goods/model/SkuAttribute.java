@@ -1,6 +1,8 @@
 package com.loto.mall.api.goods.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -23,8 +25,11 @@ import java.util.List;
 @TableName("sku_attribute")
 @ApiModel(value = "SkuAttribute对象", description = "属性表")
 public class SkuAttribute implements Serializable {
-
     private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty("ID")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     @ApiModelProperty("属性名称")
     private String name;

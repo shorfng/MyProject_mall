@@ -21,7 +21,6 @@ import java.io.Serializable;
 @TableName("category_brand")
 @ApiModel(value = "CategoryBrand对象", description = "分类品牌关系表")
 public class CategoryBrand implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("分类ID")
@@ -29,6 +28,4 @@ public class CategoryBrand implements Serializable {
 
     @ApiModelProperty("品牌ID")
     private Integer brandId;
-
-
 }

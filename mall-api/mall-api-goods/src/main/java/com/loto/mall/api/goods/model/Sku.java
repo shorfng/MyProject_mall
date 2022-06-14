@@ -20,8 +20,10 @@ import java.util.Date;
 @Setter
 @ApiModel(value = "Sku对象", description = "商品表（每个产品信息）")
 public class Sku implements Serializable {
-
     private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty("商品id")
+    private String id;
 
     @ApiModelProperty("SKU名称")
     private String name;
@@ -64,6 +66,4 @@ public class Sku implements Serializable {
 
     @ApiModelProperty("商品状态 1-正常，2-下架，3-删除")
     private Integer status;
-
-
 }

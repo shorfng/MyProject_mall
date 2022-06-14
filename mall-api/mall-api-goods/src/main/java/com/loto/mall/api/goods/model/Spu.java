@@ -1,5 +1,8 @@
 package com.loto.mall.api.goods.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -19,8 +22,11 @@ import java.io.Serializable;
 @Setter
 @ApiModel(value = "Spu对象", description = "商品表（同类产品信息）")
 public class Spu implements Serializable {
-
     private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty("主键")
+    @TableId(type = IdType.ASSIGN_ID)
+    private String id;
 
     @ApiModelProperty("SPU名")
     private String name;
@@ -60,6 +66,4 @@ public class Spu implements Serializable {
 
     @ApiModelProperty("审核状态，0：未审核，1：已审核，2：审核不通过")
     private Integer status;
-
-
 }

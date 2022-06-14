@@ -1,5 +1,7 @@
 package com.loto.mall.api.goods.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -19,8 +21,11 @@ import java.io.Serializable;
 @Setter
 @ApiModel(value = "Category对象", description = "商品类目")
 public class Category implements Serializable {
-
     private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty("分类ID")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     @ApiModelProperty("分类名称")
     private String name;
@@ -30,6 +35,4 @@ public class Category implements Serializable {
 
     @ApiModelProperty("上级ID")
     private Integer parentId;
-
-
 }
