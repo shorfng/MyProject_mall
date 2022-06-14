@@ -1,6 +1,7 @@
 package com.loto.mall.service.goods.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.loto.mall.api.goods.model.Product;
 import com.loto.mall.api.goods.model.Spu;
 /**
  * <p>
@@ -11,5 +12,9 @@ import com.loto.mall.api.goods.model.Spu;
  * @since 2022-06-13 22:42:39
  */
 public interface ISpuService extends IService<Spu> {
-
+    /**
+     * 保存同类产品信息
+     * @param product
+     */
+    void saveProduct(Product product);
 }
