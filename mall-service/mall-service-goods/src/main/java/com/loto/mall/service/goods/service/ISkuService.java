@@ -16,8 +16,23 @@ import java.util.List;
 public interface ISkuService extends IService<Sku> {
     /**
      * 根据商品推广分类id，查询指定分类下的产品列表
+     *
      * @param id
      * @return
      */
     List<Sku> typeSkuItems(Integer typeId);
+
+    /**
+     * 删除缓存（根据商品推广分类id，查询指定分类下的产品列表）
+     *
+     * @param typeId
+     */
+    void delTypeItems(Integer typeId);
+
+    /**
+     * 修改缓存（根据商品推广分类id，查询指定分类下的产品列表）
+     *
+     * @param typeId
+     */
+    List<Sku> updateTypeItems(Integer typeId);
 }

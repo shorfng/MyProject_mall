@@ -9,6 +9,8 @@ import com.loto.mall.service.goods.mapper.SkuMapper;
 import com.loto.mall.service.goods.service.ISkuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +44,37 @@ public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements ISkuS
     @Cacheable(key = "#typeId")
     @Override
     public List<Sku> typeSkuItems(Integer typeId) {
+        // 查询当前分类下的所有列表信息
+        QueryWrapper<AdItems> adItemsQueryWrapper = new QueryWrapper<>();
+        adItemsQueryWrapper.eq("type", typeId);
+        List<AdItems> adItems = adItemsMapper.selectList(adItemsQueryWrapper);
+
+        // 根据 adItems 获取所有 SkuId
+        List<String> skuIds = adItems.stream().map(AdItems::getSkuId).collect(Collectors.toList());
+
+        // 根据 SkuId 查询产品列表信息（批量查询Sku）
+        return skuIds.size() <= 0 ? null : skuMapper.selectBatchIds(skuIds);
+    }
+
+    /**
+     * 删除缓存（根据商品推广分类id，查询指定分类下的产品列表）
+     *
+     * @param typeId
+     */
+    @CacheEvict(key = "#typeId")
+    @Override
+    public void delTypeItems(Integer typeId) {
+
+    }
+
+    /**
+     * 修改缓存（根据商品推广分类id，查询指定分类下的产品列表）
+     *
+     * @param typeId
+     */
+    @CachePut(key = "#typeId")
+    @Override
+    public List<Sku> updateTypeItems(Integer typeId) {
         // 查询当前分类下的所有列表信息
         QueryWrapper<AdItems> adItemsQueryWrapper = new QueryWrapper<>();
         adItemsQueryWrapper.eq("type", typeId);
