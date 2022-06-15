@@ -8,6 +8,8 @@ import com.loto.mall.service.goods.mapper.AdItemsMapper;
 import com.loto.mall.service.goods.mapper.SkuMapper;
 import com.loto.mall.service.goods.service.ISkuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
  * @since 2022-06-13 22:42:39
  */
 @Service
+@CacheConfig(cacheNames = "ad-items-skus")  // 开启缓存
 public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements ISkuService {
     @Autowired
     private AdItemsMapper adItemsMapper;
@@ -35,6 +38,8 @@ public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements ISkuS
      * @param id
      * @return
      */
+    //@Cacheable(cacheNames = "ad-items-skus", key = "#typeId")  // 开启缓存
+    @Cacheable(key = "#typeId")
     @Override
     public List<Sku> typeSkuItems(Integer typeId) {
         // 查询当前分类下的所有列表信息
@@ -46,7 +51,6 @@ public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements ISkuS
         List<String> skuIds = adItems.stream().map(AdItems::getSkuId).collect(Collectors.toList());
 
         // 根据 SkuId 查询产品列表信息（批量查询Sku）
-        List<Sku> skus = skuMapper.selectBatchIds(skuIds);
-        return skus;
+        return skuIds.size() <= 0 ? null : skuMapper.selectBatchIds(skuIds);
     }
 }
