@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * @since 2022-06-13 22:42:39
  */
 @Service
-@CacheConfig(cacheNames = "ad-items-skus")  // 开启缓存
+@CacheConfig(cacheNames = "ad-items-skus")  // 开启缓存（cacheNames 为缓存的key ）
 public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements ISkuService {
     @Autowired
     private AdItemsMapper adItemsMapper;
@@ -37,11 +37,11 @@ public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements ISkuS
     /**
      * 根据商品推广分类id，查询指定分类下的产品列表
      *
-     * @param id
+     * @param typeId
      * @return
      */
     //@Cacheable(cacheNames = "ad-items-skus", key = "#typeId")  // 开启缓存
-    @Cacheable(key = "#typeId")
+    @Cacheable(key = "#typeId")  // 新增缓存时用（第一次会把数据缓存，后面会先查缓存中有没有，有的话就直接用，没有再查库）
     @Override
     public List<Sku> typeSkuItems(Integer typeId) {
         // 查询当前分类下的所有列表信息
@@ -61,7 +61,7 @@ public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements ISkuS
      *
      * @param typeId
      */
-    @CacheEvict(key = "#typeId")
+    @CacheEvict(key = "#typeId")  // 删除缓存时用
     @Override
     public void delTypeItems(Integer typeId) {
 
@@ -72,7 +72,7 @@ public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements ISkuS
      *
      * @param typeId
      */
-    @CachePut(key = "#typeId")
+    @CachePut(key = "#typeId")  // 修改缓存时用（每次都把数据存到缓存，但不会使用缓存的数据）
     @Override
     public List<Sku> updateTypeItems(Integer typeId) {
         // 查询当前分类下的所有列表信息

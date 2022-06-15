@@ -15,6 +15,11 @@ import java.time.Duration;
 
 @Configuration
 public class RedisConfig {
+    /**
+     * 使 Redis 缓存的数据序列化为 json 格式
+     * @param factory
+     * @return
+     */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
