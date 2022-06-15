@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @TableName("ad_items")
-@ApiModel(value = "AdItems对象", description = "")
+@ApiModel(value = "AdItems对象", description = "商品推广表")
 public class AdItems implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class AdItems implements Serializable {
     @ApiModelProperty("分类，1首页推广,2列表页推广")
     private Integer type;
 
-    @ApiModelProperty("展示的产品")
+    @ApiModelProperty("展示的产品（对应Sku）")
     private String skuId;
 
     @ApiModelProperty("排序")

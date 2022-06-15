@@ -7,12 +7,12 @@ CREATE TABLE `ad_items`
     `id`     int(11) NOT NULL AUTO_INCREMENT,
     `name`   varchar(100) DEFAULT NULL,
     `type`   int(3)       DEFAULT NULL COMMENT '分类，1首页推广,2列表页推广',
-    `sku_id` varchar(60)  DEFAULT NULL COMMENT '展示的产品',
+    `sku_id` varchar(60)  DEFAULT NULL COMMENT '展示的产品（对应Sku）',
     `sort`   int(11)      DEFAULT NULL COMMENT '排序',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 123
-  DEFAULT CHARSET = utf8;
+  DEFAULT CHARSET = utf8 COMMENT ='商品推广表';
 
 -- ----------------------------
 -- Records of ad_items
