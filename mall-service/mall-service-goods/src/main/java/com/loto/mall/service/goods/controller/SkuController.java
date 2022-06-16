@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -31,23 +32,23 @@ public class SkuController {
     private ISkuService skuService;
 
     @ApiOperation(value = "根据商品推广分类id，查询指定分类下的产品列表")
-    @GetMapping(value = "/aditems/type/{typeId}")
-    public List<Sku> typeItems(@PathVariable(value = "typeId") Integer typeId) {
+    @GetMapping(value = "/aditems/type")
+    public List<Sku> typeItems(@RequestParam(value = "typeId") Integer typeId) {
         // 查询
         List<Sku> adSkuItems = skuService.typeSkuItems(typeId);
         return adSkuItems;
     }
 
     @ApiOperation(value = "删除缓存（根据商品推广分类id，查询指定分类下的产品列表）")
-    @DeleteMapping(value = "/aditems/type/{typeId}")
-    public RespResult delTypeItems(@PathVariable(value = "typeId") Integer typeId) {
+    @DeleteMapping(value = "/aditems/type")
+    public RespResult delTypeItems(@RequestParam(value = "typeId") Integer typeId) {
         skuService.delTypeItems(typeId);
         return RespResult.ok();
     }
 
     @ApiOperation(value = "修改缓存（根据商品推广分类id，查询指定分类下的产品列表）")
-    @PutMapping(value = "/aditems/type/{typeId}")
-    public List<Sku> updateTypeItems(@PathVariable(value = "typeId") Integer typeId) {
+    @PutMapping(value = "/aditems/type")
+    public List<Sku> updateTypeItems(@RequestParam(value = "typeId") Integer typeId) {
         List<Sku> adSkuItems = skuService.updateTypeItems(typeId);
         return adSkuItems;
     }
