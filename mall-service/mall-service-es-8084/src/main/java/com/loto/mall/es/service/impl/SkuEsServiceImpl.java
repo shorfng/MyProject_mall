@@ -4,10 +4,19 @@ import com.alibaba.fastjson.JSON;
 import com.loto.mall.es.mapper.SkuEsMapper;
 import com.loto.mall.es.service.SkuEsService;
 import com.loto.mall.api.es.model.SkuEs;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,11 +32,44 @@ public class SkuEsServiceImpl implements SkuEsService {
     private SkuEsMapper skuEsMapper;
 
     /**
-     * 搜索数据
+     * 商品数据
      */
     @Override
     public Map<String, Object> search(Map<String, Object> searchMap) {
-        return null;
+        // 构建搜索条件
+        NativeSearchQueryBuilder queryBuilder = queryBuilder(searchMap);
+
+        // 去 ES 搜索
+        Page<SkuEs> page = skuEsMapper.search(queryBuilder.build());
+
+        // 获取结果集：集合列表、总记录数
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<SkuEs> list = page.getContent();
+        resultMap.put("list", list);
+
+        return resultMap;
+    }
+
+    /**
+     * 搜索条件构建
+     *
+     * @param searchMap
+     * @return
+     */
+    public NativeSearchQueryBuilder queryBuilder(Map<String, Object> searchMap) {
+        NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
+
+        // 判断关键词是否为空，不为空，则设置条件
+        if (searchMap != null && searchMap.size() > 0) {
+            // 关键词条件
+            Object keywords = searchMap.get("keywords");
+            if (!StringUtils.isEmpty(keywords)) {
+                builder.withQuery(QueryBuilders.termQuery("name", keywords.toString()));
+            }
+        }
+
+        return builder;
     }
 
     /**

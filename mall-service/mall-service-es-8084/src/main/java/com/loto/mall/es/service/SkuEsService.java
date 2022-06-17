@@ -13,7 +13,7 @@ import java.util.Map;
 
 public interface SkuEsService {
     /**
-     * 搜索数据
+     * 商品搜索
      */
     Map<String, Object> search(Map<String, Object> searchMap);
 
