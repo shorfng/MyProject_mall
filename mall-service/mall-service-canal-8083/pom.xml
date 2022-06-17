@@ -31,5 +31,12 @@
             <artifactId>mall-api-goods</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!-- 依赖 mall-api-es -->
+        <dependency>
+            <groupId>com.loto.mall</groupId>
+            <artifactId>mall-api-es</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

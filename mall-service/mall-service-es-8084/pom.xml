@@ -3,22 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>MyProject_mall</artifactId>
+        <artifactId>mall-service</artifactId>
         <groupId>com.loto.mall</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <description>数据搜索</description>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>mall-service</artifactId>
-    <packaging>pom</packaging>
-    <description>所有微服务工程的父工程</description>
-
-    <modules>
-        <module>mall-service-goods</module>
-        <module>mall-service-cephfile</module>
-        <module>mall-service-canal-8083</module>
-        <module>mall-service-es-8084</module>
-    </modules>
+    <artifactId>mall-service-es-8084</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -26,17 +18,10 @@
     </properties>
 
     <dependencies>
-        <!--jar包依赖-->
+        <!-- mall-api-es -->
         <dependency>
             <groupId>com.loto.mall</groupId>
-            <artifactId>mall-service-dependency</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <!--工具包依赖-->
-        <dependency>
-            <groupId>com.loto.mall</groupId>
-            <artifactId>mall-common</artifactId>
+            <artifactId>mall-api-es</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
