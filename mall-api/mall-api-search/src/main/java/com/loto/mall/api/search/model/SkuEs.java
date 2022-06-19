@@ -1,4 +1,4 @@
-package com.loto.mall.api.es.model;
+package com.loto.mall.api.search.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

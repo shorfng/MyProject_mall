@@ -1,6 +1,6 @@
 package com.loto.mall.search.service;
 
-import com.loto.mall.api.es.model.SkuEs;
+import com.loto.mall.api.search.model.SkuEs;
 
 import java.util.Map;
 

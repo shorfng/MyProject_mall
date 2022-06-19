@@ -1,8 +1,8 @@
 package com.loto.mall.canal.listener;
 
 import com.alibaba.fastjson.JSON;
-import com.loto.mall.api.es.feign.SkuEsFeign;
-import com.loto.mall.api.es.model.SkuEs;
+import com.loto.mall.api.search.feign.SkuEsFeign;
+import com.loto.mall.api.search.model.SkuEs;
 import com.loto.mall.api.goods.model.Sku;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;

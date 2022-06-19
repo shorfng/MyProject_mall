@@ -1,7 +1,7 @@
 package com.loto.mall.search.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.loto.mall.api.es.model.SkuEs;
+import com.loto.mall.api.search.model.SkuEs;
 import com.loto.mall.search.mapper.SkuEsMapper;
 import com.loto.mall.search.service.SkuEsService;
 import com.loto.mall.search.util.HighlightResultMapper;

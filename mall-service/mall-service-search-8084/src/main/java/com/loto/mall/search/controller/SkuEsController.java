@@ -1,7 +1,7 @@
 package com.loto.mall.search.controller;
 
 import com.loto.mall.search.service.SkuEsService;
-import com.loto.mall.api.es.model.SkuEs;
+import com.loto.mall.api.search.model.SkuEs;
 import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

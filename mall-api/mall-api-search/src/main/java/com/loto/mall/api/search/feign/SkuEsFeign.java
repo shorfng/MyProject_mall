@@ -1,6 +1,6 @@
-package com.loto.mall.api.es.feign;
+package com.loto.mall.api.search.feign;
 
-import com.loto.mall.api.es.model.SkuEs;
+import com.loto.mall.api.search.model.SkuEs;
 import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
