@@ -11,6 +11,8 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedStringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
@@ -154,6 +156,16 @@ public class SkuEsServiceImpl implements SkuEsService {
                     String key = "attrMap." + entry.getKey().replaceFirst("attr_", "") + ".keyword";
                     boolQueryBuilder.must(QueryBuilders.termQuery(key, entry.getValue().toString()));
                 }
+            }
+
+            // 排序
+            Object orderField = searchMap.get("orderField");
+            Object orderType = searchMap.get("orderType");
+            if (!StringUtils.isEmpty(orderField) && !StringUtils.isEmpty(orderType)) {
+                builder.withSort(
+                        SortBuilders.fieldSort(orderField.toString())                // 指定排序域
+                                    .order(SortOrder.valueOf(orderType.toString()))  // 排序方式
+                );
             }
         }
 
