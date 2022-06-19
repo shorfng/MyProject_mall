@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.loto.mall.api.es.model.SkuEs;
 import com.loto.mall.es.mapper.SkuEsMapper;
 import com.loto.mall.es.service.SkuEsService;
+import com.loto.mall.es.util.HighlightResultMapper;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.Aggregation;
@@ -11,6 +12,7 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedStringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,9 +84,24 @@ public class SkuEsServiceImpl implements SkuEsService {
         // 分组搜索
         group(queryBuilder, searchMap);
 
+        // 设置高亮信息：关键词前（后）面的标签、设置高亮域
+        HighlightBuilder.Field field = new HighlightBuilder
+                .Field("name")                     // 根据指定的域进行高亮查询
+                .preTags("<span style=\"color:red;\">")  // 关键词高亮前缀
+                .postTags("</span>")    // 高亮关键词后缀
+                .fragmentSize(100);     // 碎片长度
+        queryBuilder.withHighlightFields(field);
+
+        // 将非高亮数据替换成高亮数据
+
         // 去 ES 搜索
         //Page<SkuEs> page = skuEsMapper.search(queryBuilder.build());
-        AggregatedPage<SkuEs> page = (AggregatedPage<SkuEs>) skuEsMapper.search(queryBuilder.build());
+        //AggregatedPage<SkuEs> page = (AggregatedPage<SkuEs>) skuEsMapper.search(queryBuilder.build());
+        AggregatedPage<SkuEs> page = elasticsearchRestTemplate.queryForPage(
+                queryBuilder.build(),
+                SkuEs.class,
+                new HighlightResultMapper()  // 映射转换
+        );
 
         // 获取结果集：集合列表、总记录数
         Map<String, Object> resultMap = new HashMap<>();
