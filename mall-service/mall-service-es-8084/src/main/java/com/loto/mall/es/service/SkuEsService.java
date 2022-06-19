@@ -13,11 +13,6 @@ import java.util.Map;
 
 public interface SkuEsService {
     /**
-     * 商品搜索
-     */
-    Map<String, Object> search(Map<String, Object> searchMap);
-
-    /**
      * 增加索引
      *
      * @param skuEs
@@ -30,4 +25,10 @@ public interface SkuEsService {
      * @param id
      */
     void del(String id);
+
+    /**
+     * 商品搜索
+     */
+    Map<String, Object> search(Map<String, Object> searchMap);
+
 }

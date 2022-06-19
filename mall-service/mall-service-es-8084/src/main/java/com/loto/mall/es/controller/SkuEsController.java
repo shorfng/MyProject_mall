@@ -31,13 +31,6 @@ public class SkuEsController {
     @Autowired
     private SkuEsService skuEsService;
 
-    @ApiOperation(value = "商品搜索")
-    @GetMapping
-    public RespResult<Map<String, Object>> search(@RequestParam(required = false) Map<String, Object> searchMap) {
-        Map<String, Object> resultMap = skuEsService.search(searchMap);
-        return RespResult.ok(resultMap);
-    }
-
     @ApiOperation(value = "增加索引")
     @PostMapping(value = "/add")
     public RespResult add(@RequestBody SkuEs skuEs) {
@@ -50,5 +43,12 @@ public class SkuEsController {
     public RespResult del(@PathVariable(value = "id") String id) {
         skuEsService.del(id);
         return RespResult.ok();
+    }
+
+    @ApiOperation(value = "商品搜索")
+    @GetMapping
+    public RespResult<Map<String, Object>> search(@RequestParam(required = false) Map<String, Object> searchMap) {
+        Map<String, Object> resultMap = skuEsService.search(searchMap);
+        return RespResult.ok(resultMap);
     }
 }
