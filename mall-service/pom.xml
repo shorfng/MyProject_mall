@@ -17,7 +17,7 @@
         <module>mall-service-goods</module>
         <module>mall-service-cephfile</module>
         <module>mall-service-canal-8083</module>
-        <module>mall-service-es-8084</module>
+        <module>mall-service-search-8084</module>
     </modules>
 
     <properties>

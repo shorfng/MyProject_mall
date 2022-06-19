@@ -15,7 +15,7 @@
 
     <modules>
         <module>mall-api-goods</module>
-        <module>mall-api-es</module>
+        <module>mall-api-search</module>
     </modules>
 
     <properties>

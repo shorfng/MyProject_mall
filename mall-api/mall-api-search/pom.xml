@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>mall-service</artifactId>
+        <artifactId>mall-api</artifactId>
         <groupId>com.loto.mall</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <description>数据搜索</description>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>mall-service-es-8084</artifactId>
+    <artifactId>mall-api-search</artifactId>
+    <description>全文搜索引擎</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -18,11 +18,10 @@
     </properties>
 
     <dependencies>
-        <!-- mall-api-es -->
+        <!-- ElasticSearch -->
         <dependency>
-            <groupId>com.loto.mall</groupId>
-            <artifactId>mall-api-es</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
     </dependencies>
 </project>

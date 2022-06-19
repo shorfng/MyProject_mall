@@ -1,4 +1,4 @@
-package com.loto.mall.es.mapper;
+package com.loto.mall.search.mapper;
 
 import com.loto.mall.api.es.model.SkuEs;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

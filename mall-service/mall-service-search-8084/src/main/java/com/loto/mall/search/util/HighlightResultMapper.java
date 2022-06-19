@@ -1,4 +1,4 @@
-package com.loto.mall.es.util;
+package com.loto.mall.search.util;
 
 import com.alibaba.fastjson.JSONObject;
 import org.elasticsearch.action.search.SearchResponse;

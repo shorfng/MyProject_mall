@@ -1,6 +1,6 @@
-package com.loto.mall.es.controller;
+package com.loto.mall.search.controller;
 
-import com.loto.mall.es.service.SkuEsService;
+import com.loto.mall.search.service.SkuEsService;
 import com.loto.mall.api.es.model.SkuEs;
 import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.Api;

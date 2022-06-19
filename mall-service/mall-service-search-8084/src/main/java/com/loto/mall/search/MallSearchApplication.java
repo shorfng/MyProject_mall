@@ -1,4 +1,4 @@
-package com.loto.mall.es;
+package com.loto.mall.search;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,15 +9,15 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 /**
  * Author：蓝田_Loto<p>
  * Date：2022-06-17 20:02<p>
- * PageName：com.loto.mall.es.MallEsApplication.java<p>
+ * PageName：MallSearchApplication.java<p>
  * Function：
  */
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@EnableElasticsearchRepositories(basePackages = "com.loto.mall.es.mapper")
+@EnableElasticsearchRepositories(basePackages = "com.loto.mall.search.mapper")
 @EnableFeignClients
-public class MallEsApplication {
+public class MallSearchApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MallEsApplication.class, args);
+        SpringApplication.run(MallSearchApplication.class, args);
     }
 }

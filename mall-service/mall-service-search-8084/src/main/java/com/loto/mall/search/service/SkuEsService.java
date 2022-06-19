@@ -1,4 +1,4 @@
-package com.loto.mall.es.service;
+package com.loto.mall.search.service;
 
 import com.loto.mall.api.es.model.SkuEs;
 

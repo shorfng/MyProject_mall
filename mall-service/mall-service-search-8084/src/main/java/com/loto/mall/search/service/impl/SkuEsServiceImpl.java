@@ -1,10 +1,10 @@
-package com.loto.mall.es.service.impl;
+package com.loto.mall.search.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.loto.mall.api.es.model.SkuEs;
-import com.loto.mall.es.mapper.SkuEsMapper;
-import com.loto.mall.es.service.SkuEsService;
-import com.loto.mall.es.util.HighlightResultMapper;
+import com.loto.mall.search.mapper.SkuEsMapper;
+import com.loto.mall.search.service.SkuEsService;
+import com.loto.mall.search.util.HighlightResultMapper;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.Aggregation;

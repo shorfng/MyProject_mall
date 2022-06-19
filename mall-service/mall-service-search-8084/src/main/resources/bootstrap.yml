@@ -5,7 +5,7 @@ server:
 spring:
   # 应用名称
   application:
-    name: mall-es
+    name: mall-search
   # nacos 配置
   cloud:
     nacos:
