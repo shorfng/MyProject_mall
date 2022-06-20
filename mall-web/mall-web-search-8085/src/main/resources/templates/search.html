@@ -683,14 +683,16 @@
 
         <!--details-->
         <div class="details">
+            <!-- 排序 -->
             <div class="sui-navbar">
                 <div class="navbar-inner filter">
                     <ul class="sui-nav">
                         <li class="active"><a href="#">综合</a></li>
                         <li><a href="#">销量</a></li>
-                        <li><a href="#">新品</a></li>
                         <li><a href="#">评价</a></li>
-                        <li><a href="#">价格</a></li>
+                        <li><a th:href="@{${urlSort}(orderField='updateTime',orderType='DESC')}">新品</a></li>
+                        <li><a th:href="@{${urlSort}(orderField='price',orderType='ASC')}">价格+</a></li>
+                        <li><a th:href="@{${urlSort}(orderField='price',orderType='DESC')}">价格-</a></li>
                     </ul>
                 </div>
             </div>
@@ -756,7 +758,10 @@
                         </li>
                     </ul>
 
-                    <div><span>共<i th:text="${result.pageInfo.last}"></i>页&nbsp;</span><span>到第<input type="text" class="page-num">页 </span></div></div>
+                    <div><span>共<i th:text="${result.pageInfo.last}"></i>页&nbsp;</span><span>到第<input type="text"
+                                                                                                      class="page-num">页 </span>
+                    </div>
+                </div>
             </div>
         </div>
 

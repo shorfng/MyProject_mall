@@ -35,13 +35,19 @@ public class SearchController {
         // 搜索
         RespResult<Map<String, Object>> resultMap = skuSearchFeign.search(searchMap);
 
+        // names参数，表示url要去掉的参数
         // 组装用户访问的 url
         model.addAttribute("url", UrlUtils.map2url("/web/search", searchMap, "page"));
+
+        // 排序
         model.addAttribute("urlSort", UrlUtils.map2url("/web/search", searchMap, "orderType", "orderField", "page"));
+
         // 结果列表
         model.addAttribute("result", resultMap.getData());
+
         // 搜索框
         model.addAttribute("searchMap", searchMap);
+
         return "search";
     }
 }
