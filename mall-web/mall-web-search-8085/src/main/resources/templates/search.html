@@ -20,14 +20,14 @@
                 <div class="shortcut">
                     <ul class="fl">
                         <li class="f-item">shop欢迎您！</li>
-                        <li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html"
-                                                                                                 target="_blank">免费注册</a></span>
+                        <li class="f-item">请<a href="login.html" target="_blank">登录</a>　
+                            <span><a href="register.html" target="_blank">免费注册</a></span>
                         </li>
                     </ul>
+
                     <div class="fr typelist">
                         <ul class="types">
                             <li class="f-item"><span>我的订单</span></li>
-
                             <li class="f-item"><span><a href="cart.html" target="_blank">我的购物车</a></span></li>
                             <li class="f-item"><span><a href="home.html" target="_blank">我的shop</a></span></li>
                             <li class="f-item"><span>shop会员</span></li>
@@ -35,10 +35,9 @@
                             <li class="f-item"><span>关注shop</span></li>
                             <li class="f-item"><span><a href="cooperation.html" target="_blank">合作招商</a></span></li>
                             <li class="f-item"><span><a href="shoplogin.html" target="_blank">商家后台</a></span></li>
-                            <li class="f-item"><span>网站导航</li>
+                            <li class="f-item"><span>网站导航</span></li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -47,23 +46,28 @@
         <div class="header">
             <div class="py-container">
                 <div class="yui3-g Logo">
+
                     <div class="yui3-u Left logoArea">
                         <a class="logo-bd" title="shop" href="index.html" target="_blank"></a>
                     </div>
+
+                    <!-- searchAutoComplete 搜索框 -->
                     <div class="yui3-u Rit searchArea">
                         <div class="search">
-                            <form action="" class="sui-form form-inline">
-                                <!--searchAutoComplete-->
+                            <!-- 表单提交 -->
+                            <form action="/web/search" class="sui-form form-inline">
                                 <div class="input-append">
-                                    <input type="text" id="autocomplete" class="input-error input-xxlarge"/>
+                                    <input type="text"
+                                           name="keywords"
+                                           th:value="${#maps.containsKey(searchMap,'keywords')}? ${searchMap.keywords}:''"
+                                           id="autocomplete"
+                                           class="input-error input-xxlarge"/>
                                     <button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
                                 </div>
                             </form>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
