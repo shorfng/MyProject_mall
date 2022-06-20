@@ -1,6 +1,7 @@
 package com.loto.mall.canal.listener;
 
 import com.alibaba.fastjson.JSON;
+import com.loto.mall.api.detail.feign.DetailFeign;
 import com.loto.mall.api.search.feign.SkuSearchFeign;
 import com.loto.mall.api.search.model.SkuSearch;
 import com.loto.mall.api.goods.model.Sku;
@@ -23,6 +24,9 @@ public class SkuHandler implements EntryHandler<Sku> {
     @Autowired
     private SkuSearchFeign skuSearchFeign;
 
+    @Autowired
+    private DetailFeign detailFeign;
+
     /**
      * 增加数据监听
      *
@@ -35,6 +39,9 @@ public class SkuHandler implements EntryHandler<Sku> {
             // 新增（将Sku转成JSON，再将JSON转成SkuEs）
             skuSearchFeign.add(JSON.parseObject(JSON.toJSONString(sku), SkuSearch.class));
         }
+
+        // 生成静态页
+        detailFeign.html(sku.getSpuId());
     }
 
     /**
@@ -53,6 +60,9 @@ public class SkuHandler implements EntryHandler<Sku> {
             // 更新（将Sku转成JSON，再将JSON转成SkuEs）
             skuSearchFeign.add(JSON.parseObject(JSON.toJSONString(after), SkuSearch.class));
         }
+
+        // 生成静态页
+        detailFeign.html(after.getSpuId());
     }
 
     /**

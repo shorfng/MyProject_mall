@@ -17,4 +17,11 @@ public interface ISpuService extends IService<Spu> {
      * @param product
      */
     void saveProduct(Product product);
+
+    /**
+     * 根据 spuId 查询商品信息
+     * @param id
+     * @return
+     */
+    Product findBySupId(String id);
 }

@@ -6,6 +6,8 @@ import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,5 +33,12 @@ public class SpuController {
     public RespResult save(@RequestBody Product product) {
         spuService.saveProduct(product);
         return RespResult.ok();
+    }
+
+    @ApiOperation(value = "根据 spuId 查询商品信息")
+    @GetMapping(value = "/product/{id}")
+    public RespResult<Product> one(@PathVariable(value = "id")String id){
+        Product product = spuService.findBySupId(id);
+        return RespResult.ok(product);
     }
 }

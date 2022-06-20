@@ -15,6 +15,7 @@
 
     <modules>
         <module>mall-web-search-8085</module>
+        <module>mall-web-detail-8086</module>
     </modules>
 
     <properties>

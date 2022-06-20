@@ -38,5 +38,12 @@
             <artifactId>mall-api-search</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!-- 依赖 mall-api-detail -->
+        <dependency>
+            <groupId>com.loto.mall</groupId>
+            <artifactId>mall-api-detail</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
