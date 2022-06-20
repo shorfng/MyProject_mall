@@ -1,7 +1,7 @@
 package com.loto.mall.search.controller;
 
-import com.loto.mall.search.service.SkuEsService;
-import com.loto.mall.api.search.model.SkuEs;
+import com.loto.mall.search.service.SkuSearchService;
+import com.loto.mall.api.search.model.SkuSearch;
 import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,35 +20,35 @@ import java.util.Map;
 /**
  * Author：蓝田_Loto<p>
  * Date：2022-06-17 20:13<p>
- * PageName：SkuEsController.java<p>
+ * PageName：SkuSearchController.java<p>
  * Function：
  */
 
 @RestController
-@RequestMapping(value = "/es")
-@Api(value = "SkuEsController", tags = "Sku - Es")
-public class SkuEsController {
+@RequestMapping(value = "/search")
+@Api(value = "SkuSearchController", tags = "Sku搜索")
+public class SkuSearchController {
     @Autowired
-    private SkuEsService skuEsService;
+    private SkuSearchService skuSearchService;
 
     @ApiOperation(value = "增加索引")
     @PostMapping(value = "/add")
-    public RespResult add(@RequestBody SkuEs skuEs) {
-        skuEsService.add(skuEs);
+    public RespResult add(@RequestBody SkuSearch skuSearch) {
+        skuSearchService.add(skuSearch);
         return RespResult.ok();
     }
 
     @ApiOperation(value = "删除索引")
     @DeleteMapping(value = "/del/{id}")
     public RespResult del(@PathVariable(value = "id") String id) {
-        skuEsService.del(id);
+        skuSearchService.del(id);
         return RespResult.ok();
     }
 
     @ApiOperation(value = "商品搜索")
     @GetMapping
     public RespResult<Map<String, Object>> search(@RequestParam(required = false) Map<String, Object> searchMap) {
-        Map<String, Object> resultMap = skuEsService.search(searchMap);
+        Map<String, Object> resultMap = skuSearchService.search(searchMap);
         return RespResult.ok(resultMap);
     }
 }

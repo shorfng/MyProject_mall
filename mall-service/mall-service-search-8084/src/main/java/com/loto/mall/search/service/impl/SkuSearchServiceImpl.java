@@ -1,9 +1,9 @@
 package com.loto.mall.search.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.loto.mall.api.search.model.SkuEs;
-import com.loto.mall.search.mapper.SkuEsMapper;
-import com.loto.mall.search.service.SkuEsService;
+import com.loto.mall.api.search.model.SkuSearch;
+import com.loto.mall.search.mapper.SkuSearchMapper;
+import com.loto.mall.search.service.SkuSearchService;
 import com.loto.mall.search.util.HighlightResultMapper;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -33,14 +33,14 @@ import java.util.Set;
 /**
  * Author：蓝田_Loto<p>
  * Date：2022-06-17 20:09<p>
- * PageName：SkuEsServiceImpl.java<p>
+ * PageName：SkuSearchServiceImpl.java<p>
  * Function：
  */
 
 @Service
-public class SkuEsServiceImpl implements SkuEsService {
+public class SkuSearchServiceImpl implements SkuSearchService {
     @Autowired
-    private SkuEsMapper skuEsMapper;
+    private SkuSearchMapper skuSearchMapper;
 
     @Autowired
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
@@ -48,19 +48,19 @@ public class SkuEsServiceImpl implements SkuEsService {
     /**
      * 增加索引
      *
-     * @param skuEs
+     * @param skuSearch
      */
     @Override
-    public void add(SkuEs skuEs) {
+    public void add(SkuSearch skuSearch) {
         // 获取属性
-        String attrMap = skuEs.getSkuAttribute();
+        String attrMap = skuSearch.getSkuAttribute();
 
         // 不为空，则将属性添加到 attrMap 中
         if (!StringUtils.isEmpty(attrMap)) {
-            skuEs.setAttrMap(JSON.parseObject(attrMap, Map.class));
+            skuSearch.setAttrMap(JSON.parseObject(attrMap, Map.class));
         }
 
-        skuEsMapper.save(skuEs);
+        skuSearchMapper.save(skuSearch);
     }
 
     /**
@@ -70,7 +70,7 @@ public class SkuEsServiceImpl implements SkuEsService {
      */
     @Override
     public void del(String id) {
-        skuEsMapper.deleteById(id);
+        skuSearchMapper.deleteById(id);
     }
 
     /**
@@ -97,9 +97,9 @@ public class SkuEsServiceImpl implements SkuEsService {
         // 去 ES 搜索
         //Page<SkuEs> page = skuEsMapper.search(queryBuilder.build());
         //AggregatedPage<SkuEs> page = (AggregatedPage<SkuEs>) skuEsMapper.search(queryBuilder.build());
-        AggregatedPage<SkuEs> page = elasticsearchRestTemplate.queryForPage(
+        AggregatedPage<SkuSearch> page = elasticsearchRestTemplate.queryForPage(
                 queryBuilder.build(),
-                SkuEs.class,
+                SkuSearch.class,
                 new HighlightResultMapper()  // 映射转换
         );
 
@@ -112,7 +112,7 @@ public class SkuEsServiceImpl implements SkuEsService {
         // 解析：动态属性（将属性信息合并成Map对象）
         attrParse(resultMap);
 
-        List<SkuEs> list = page.getContent();
+        List<SkuSearch> list = page.getContent();
         resultMap.put("list", list);
 
         return resultMap;

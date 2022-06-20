@@ -1,23 +1,23 @@
 package com.loto.mall.search.service;
 
-import com.loto.mall.api.search.model.SkuEs;
+import com.loto.mall.api.search.model.SkuSearch;
 
 import java.util.Map;
 
 /**
  * Author：蓝田_Loto<p>
  * Date：2022-06-17 20:07<p>
- * PageName：SkuEsService.java<p>
+ * PageName：SkuSearchService.java<p>
  * Function：
  */
 
-public interface SkuEsService {
+public interface SkuSearchService {
     /**
      * 增加索引
      *
-     * @param skuEs
+     * @param skuSearch
      */
-    void add(SkuEs skuEs);
+    void add(SkuSearch skuSearch);
 
     /**
      * 删除索引

@@ -1,6 +1,6 @@
 package com.loto.mall.search.mapper;
 
-import com.loto.mall.api.search.model.SkuEs;
+import com.loto.mall.api.search.model.SkuSearch;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 /**
@@ -10,6 +10,6 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
  * Function：
  */
 
-public interface SkuEsMapper extends ElasticsearchRepository<SkuEs, String> {
+public interface SkuSearchMapper extends ElasticsearchRepository<SkuSearch, String> {
 
 }

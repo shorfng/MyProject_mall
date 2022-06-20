@@ -1,8 +1,8 @@
 package com.loto.mall.canal.listener;
 
 import com.alibaba.fastjson.JSON;
-import com.loto.mall.api.search.feign.SkuEsFeign;
-import com.loto.mall.api.search.model.SkuEs;
+import com.loto.mall.api.search.feign.SkuSearchFeign;
+import com.loto.mall.api.search.model.SkuSearch;
 import com.loto.mall.api.goods.model.Sku;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import top.javatool.canal.client.handler.EntryHandler;
 @Component
 public class SkuHandler implements EntryHandler<Sku> {
     @Autowired
-    private SkuEsFeign skuEsFeign;
+    private SkuSearchFeign skuSearchFeign;
 
     /**
      * 增加数据监听
@@ -33,7 +33,7 @@ public class SkuHandler implements EntryHandler<Sku> {
     public void insert(Sku sku) {
         if (sku.getStatus() == 1) {
             // 新增（将Sku转成JSON，再将JSON转成SkuEs）
-            skuEsFeign.add(JSON.parseObject(JSON.toJSONString(sku), SkuEs.class));
+            skuSearchFeign.add(JSON.parseObject(JSON.toJSONString(sku), SkuSearch.class));
         }
     }
 
@@ -48,10 +48,10 @@ public class SkuHandler implements EntryHandler<Sku> {
     public void update(Sku before, Sku after) {
         if (after.getStatus() == 2) {
             // 删除索引
-            skuEsFeign.del(after.getId());
+            skuSearchFeign.del(after.getId());
         } else {
             // 更新（将Sku转成JSON，再将JSON转成SkuEs）
-            skuEsFeign.add(JSON.parseObject(JSON.toJSONString(after), SkuEs.class));
+            skuSearchFeign.add(JSON.parseObject(JSON.toJSONString(after), SkuSearch.class));
         }
     }
 
@@ -62,6 +62,6 @@ public class SkuHandler implements EntryHandler<Sku> {
      */
     @Override
     public void delete(Sku sku) {
-        skuEsFeign.del(sku.getId());
+        skuSearchFeign.del(sku.getId());
     }
 }

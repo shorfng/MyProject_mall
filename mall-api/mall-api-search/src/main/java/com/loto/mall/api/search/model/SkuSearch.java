@@ -12,13 +12,13 @@ import java.util.Map;
 /**
  * Author：蓝田_Loto<p>
  * Date：2022-06-17 19:49<p>
- * PageName：SkuEs.java<p>
+ * PageName：SkuSearch.java<p>
  * Function：
  */
 
 @Data
-@Document(indexName = "mall-sku-es", type = "mall")
-public class SkuEs {
+@Document(indexName = "mall-sku-search", type = "mall")
+public class SkuSearch {
     @Id
     private String id;
 
