@@ -587,46 +587,63 @@
         <!--bread-->
         <div class="bread">
             <ul class="fl sui-breadcrumb">
-                <li>
-                    <a href="#">全部结果</a>
+                <li><a href="#">全部结果</a></li>
+
+                <!-- 分类 -->
+                <li class="active" th:if="${#maps.containsKey(searchMap,'category')}">
+                    <i th:text="${searchMap.category}"></i>
+                    <a th:href="@{${#strings.replace(url,'category='+searchMap.category,'')}}">×</a>
                 </li>
-                <li class="active">家用电器</li>
             </ul>
+
             <ul class="fl sui-tag">
-                <li class="with-x">小天鹅洗衣机<i>×</i></li>
-                <li class="with-x">格力空调<i>×</i></li>
-                <li class="with-x">美的风扇<i>×</i></li>
+                <!-- 品牌 -->
+                <li class="with-x" th:if="${#maps.containsKey(searchMap,'brand')}">
+                    品牌:<i th:text="${searchMap.brand}"></i>
+                    <a th:href="@{${#strings.replace(url,'brand='+searchMap.brand,'')}}">×</a>
+                </li>
+
+                <!-- 属性 -->
+                <!--
+                    searchMap:key 以attr_
+                    strings.startsWit:判断key的开始元素
+                    strings.replace:替换字符串中指定字符
+                -->
+                <li class="with-x" th:each="attr:${searchMap}"
+                    th:if="${#strings.startsWith(attr.key,'attr_')}">
+                    <i th:text="${#strings.replace(attr.key,'attr_','')}"></i>:<i th:text="${attr.value}"></i>
+                    <a th:href="@{${#strings.replace(url,attr.key+'='+attr.value,'')}}">×</a>
+                </li>
+
+                <!-- 价格 -->
+                <li class="with-x" th:if="${#maps.containsKey(searchMap,'price')}">
+                    <i th:text="${searchMap.price}"></i>
+                    <a th:href="@{${#strings.replace(url,'price='+searchMap.price,'')}}">×</a>
+                </li>
             </ul>
         </div>
-        <!--selector-->
+
+        <!-- 搜索条件 -->
         <div class="clearfix selector">
-            <div class="type-wrap">
+            <!-- 分类 -->
+            <div class="type-wrap" th:unless="${#maps.containsKey(searchMap,'category')}">
                 <div class="fl key">分类</div>
-                <div class="fl value">家电、儿童、图书、视频</div>
+                <div class="fl value">
+                    <div th:each="category:${result.categoryList}">
+                        <a th:href="@{${url}(category=${category})}" th:text="${category}"></a>
+                    </div>
+                </div>
                 <div class="fl ext"></div>
             </div>
-            <div class="type-wrap logo">
+
+            <!-- 品牌 -->
+            <div class="type-wrap logo" th:unless="${#maps.containsKey(searchMap,'brand')}">
                 <div class="fl key brand">品牌</div>
                 <div class="value logos">
                     <ul class="logo-list">
-                        <li><img src="/img/_/phone01.png"/></li>
-                        <li><img src="/img/_/phone02.png"/></li>
-                        <li><img src="/img/_/phone03.png"/></li>
-                        <li><img src="/img/_/phone04.png"/></li>
-                        <li><img src="/img/_/phone05.png"/></li>
-                        <li><img src="/img/_/phone06.png"/></li>
-                        <li><img src="/img/_/phone07.png"/></li>
-                        <li><img src="/img/_/phone08.png"/></li>
-                        <li><img src="/img/_/phone09.png"/></li>
-                        <li><img src="/img/_/phone10.png"/></li>
-                        <li><img src="/img/_/phone11.png"/></li>
-                        <li><img src="/img/_/phone12.png"/></li>
-                        <li><img src="/img/_/phone13.png"/></li>
-                        <li><img src="/img/_/phone14.png"/></li>
-                        <li><img src="/img/_/phone15.png"/></li>
-                        <li><img src="/img/_/phone16.png"/></li>
-                        <li><img src="/img/_/phone17.png"/></li>
-                        <li><img src="/img/_/phone18.png"/></li>
+                        <li th:each="brand:${result.brandList}">
+                            <a th:href="@{${url}(brand=${brand})}" th:text="${brand}"></a>
+                        </li>
                     </ul>
                 </div>
                 <div class="ext">
@@ -634,123 +651,49 @@
                     <a href="javascript:void(0);">更多</a>
                 </div>
             </div>
-            <div class="type-wrap">
-                <div class="fl key">网络</div>
+
+            <!-- 属性 -->
+            <div class="type-wrap" th:each="attr:${result.attrMaps}"
+                 th:unless="${#maps.containsKey(searchMap,'attr_'+attr.key)}">
+                <div class="fl key" th:text="${attr.key}"></div>
                 <div class="fl value">
                     <ul class="type-list">
-                        <li>
-                            <a>电信5G</a>
-                        </li>
-                        <li>
-                            <a>电信4G</a>
-                        </li>
-                        <li>
-                            <a>移动3G</a>
-                        </li>
-                        <li>
-                            <a>联通3G</a>
-                        </li>
-                        <li>
-                            <a>电信3G</a>
-                        </li>
-                        <li>
-                            <a>移动3G</a>
-                        </li>
-                        <li>
-                            <a>联通3G</a>
-                        </li>
-                        <li>
-                            <a>联通4G</a>
+                        <li th:each="opt:${attr.value}">
+                            <a th:href="@{${url}('attr_'+${attr.key}=${opt})}" th:text="${opt}"></a>
                         </li>
                     </ul>
                 </div>
                 <div class="fl ext"></div>
             </div>
-            <div class="type-wrap">
-                <div class="fl key">手机屏尺寸</div>
-                <div class="fl value">
-                    <ul class="type-list">
-                        <li>
-                            <a>5.0-5.9英寸</a>
-                        </li>
-                        <li>
-                            <a>6.0-6.2英寸</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="fl ext"></div>
-            </div>
-            <div class="type-wrap">
-                <div class="fl key">像素</div>
-                <div class="fl value">
-                    <ul class="type-list">
-                        <li>
-                            <a>3000万以上</a>
-                        </li>
-                        <li>
-                            <a>800-3000万</a>
-                        </li>
-                        <li>
-                            <a>1200-1599万</a>
-                        </li>
-                        <li>
-                            <a>1600万以上</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="fl ext"></div>
-            </div>
-            <div class="type-wrap">
+
+            <!-- 价格范围 -->
+            <div class="type-wrap" th:unless="${#maps.containsKey(searchMap,'price')}">
                 <div class="fl key">价格范围</div>
                 <div class="fl value">
                     <ul class="type-list">
-                        <li>
-                            <a>0-500元</a>
-                        </li>
-                        <li>
-                            <a>500-1000元</a>
-                        </li>
-                        <li>
-                            <a>1000-1500元</a>
-                        </li>
-                        <li>
-                            <a>1500-2000元</a>
-                        </li>
-                        <li>
-                            <a>2000-3000元 </a>
-                        </li>
-                        <li>
-                            <a>3000元以上</a>
-                        </li>
+                        <li><a th:href="@{${url}(price='0-500元')}">0-500元</a></li>
+                        <li><a th:href="@{${url}(price='500-1000元')}">500-1000元</a></li>
+                        <li><a th:href="@{${url}(price='1000元以上')}">1000元以上</a></li>
                     </ul>
                 </div>
-                <div class="fl ext">
-                </div>
+                <div class="fl ext"></div>
             </div>
         </div>
+
         <!--details-->
         <div class="details">
             <div class="sui-navbar">
                 <div class="navbar-inner filter">
                     <ul class="sui-nav">
-                        <li class="active">
-                            <a href="#">综合</a>
-                        </li>
-                        <li>
-                            <a href="#">销量</a>
-                        </li>
-                        <li>
-                            <a href="#">新品</a>
-                        </li>
-                        <li>
-                            <a href="#">评价</a>
-                        </li>
-                        <li>
-                            <a href="#">价格</a>
-                        </li>
+                        <li class="active"><a href="#">综合</a></li>
+                        <li><a href="#">销量</a></li>
+                        <li><a href="#">新品</a></li>
+                        <li><a href="#">评价</a></li>
+                        <li><a href="#">价格</a></li>
                     </ul>
                 </div>
             </div>
+
             <div class="goods-list">
                 <ul class="yui3-g">
                     <!-- 商品列表 -->
