@@ -4,12 +4,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
-/*****
- * @Author:
- * @Description:URL工具
- ****/
+/**
+ * URL工具
+ */
 public class UrlUtils {
-
     /**
      * 去掉URL中指定的参数
      */
@@ -20,16 +18,17 @@ public class UrlUtils {
         return url;
     }
 
-    /***
+    /**
      * 当前请求地址组装
      */
     public static String map2url(String baseUrl, Map<String, Object> searchMap, String... names) {
-        //参数获取
+        // 参数获取
         String parm = map2parm(searchMap);
         if (!StringUtils.isEmpty(parm)) {
             baseUrl += "?" + parm;
         }
-        //去掉指定参数
+
+        // 去掉指定参数
         baseUrl = replateUrlParameter(baseUrl, names);
         return baseUrl;
     }
@@ -44,15 +43,18 @@ public class UrlUtils {
         if (map == null) {
             return "";
         }
-        StringBuffer sb = new StringBuffer();
+
+        StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            sb.append(entry.getKey() + "=" + entry.getValue());
+            sb.append(entry.getKey()).append("=").append(entry.getValue());
             sb.append("&");
         }
+
         String parameters = sb.toString();
         if (parameters.endsWith("&")) {
             parameters = StringUtils.substringBeforeLast(parameters, "&");
         }
+
         return parameters;
     }
 }

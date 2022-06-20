@@ -35,7 +35,7 @@ public class SearchController {
         // 搜索
         RespResult<Map<String, Object>> resultMap = skuSearchFeign.search(searchMap);
 
-        // 组装用户访问的url
+        // 组装用户访问的 url
         model.addAttribute("url", UrlUtils.map2url("/web/search", searchMap, "page"));
         model.addAttribute("urlSort", UrlUtils.map2url("/web/search", searchMap, "orderType", "orderField", "page"));
         model.addAttribute("result", resultMap.getData());
