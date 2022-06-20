@@ -22,14 +22,13 @@ import java.util.Map;
  */
 
 @FeignClient(value = "mall-search")
-@RequestMapping(value = "/search")
 public interface SkuSearchFeign {
     @ApiOperation(value = "增加索引")
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/search/add")
     RespResult add(@RequestBody SkuSearch skuSearch);
 
     @ApiOperation(value = "删除索引")
-    @DeleteMapping(value = "/del/{id}")
+    @DeleteMapping(value = "/search/del/{id}")
     RespResult del(@PathVariable(value = "id") String id);
 
     @ApiOperation(value = "商品搜索")

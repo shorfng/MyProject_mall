@@ -749,345 +749,35 @@
             </div>
             <div class="goods-list">
                 <ul class="yui3-g">
-                    <li class="yui3-u-1-5">
+                    <!-- 商品列表 -->
+                    <li th:each="item:${result.list}" class="yui3-u-1-5">
                         <div class="list-wrap">
+                            <!-- 图片 -->
                             <div class="p-img">
-                                <a href="item.html" target="_blank"><img src="/img/_/se1.jpg"/></a>
+                                <a href="item.html" target="_blank">
+                                    <img th:src="${item.image}"/>
+                                </a>
                             </div>
+
+                            <!-- 价格 -->
                             <div class="price">
                                 <strong>
                                     <em>¥</em>
-                                    <i>168.00</i>
+                                    <i th:text="${item.price}"></i>
                                 </strong>
                             </div>
+
+                            <!-- 标题 -->
                             <div class="attr">
-                                <a target="_blank" href="item.html">小米摄像头2k米家智能家庭监控家用1080P云台版360度机夜视无线监视器wifi全景高清手机远程宠物室内pro</a>
+                                <a target="_blank" href="item.html" th:utext="${item.name}"></a>
                             </div>
+
+                            <!-- 评价 -->
                             <div class="commit">
                                 <i class="command">已有<span>5435</span>人评价</i>
                             </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                      <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se2.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>77.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">ROMOSS/罗马仕充电宝sense6 20000毫安手机移动电源来图定制适用</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>43</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se3.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>29.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">彩虹电热毯双人双控安全家用调温双温加大安全智能2米三人电褥子</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>244</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se4.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>466.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">佳博GP1324D蓝牙快递单电子面单打印机热敏条码不干胶标签打印机E邮宝通用</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>2344</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se5.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>388.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">美的电烤箱家用烘焙小型烤箱多功能全自动蛋糕迷你大容量干果正品</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>67</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se6.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>98.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">飞科剃须刀电动男士刮胡刀全身水洗智能充电式胡须刀正品刮胡子刀</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>989</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se7.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>168.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">九阳榨汁机家用水果小型全自动果蔬多功能炸果汁辅食料理机榨汁杯</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>876</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se8.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>288.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">飞科剃须刀电动男士刮胡刀智能充电式全身水洗胡须刀正品刮胡子刀</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>4556</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se9.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>2088.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">Ronshen/容声 BCD-172D11D双开门</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>2456</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se10.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>1998.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">Midea/美的 BCD-230WTM(E)风冷无</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>45</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se11.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>73.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">sup掌上复古游戏机老式童年怀旧款超</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>656</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se12.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>268.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">北通蝙蝠pc电脑版steam游戏手柄usb</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>344</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se13.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>298.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">九阳破壁机家用加热全自动料理机多功能豆浆辅食榨汁官网正品Y912</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>4567</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se14.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>288.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">九阳面条机家用全自动小型电动压面机智能打面和面饺子皮一体机L6</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>57</span>人评价</i>
-                            </div>
-                            <div class="operate">
-                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-5">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/img/_/se15.jpg"/>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>98.00</i>
-                                </strong>
-                            </div>
-                            <div class="attr">
-                                <a target="_blank" href="item.html">美的电饼铛电饼档家用双面加热煎烙饼锅新款自动断电加深加大正品</a>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有<span>3345</span>人评价</i>
-                            </div>
+
+                            <!-- 操作 -->
                             <div class="operate">
                                 <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
                                 <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
@@ -1096,6 +786,7 @@
                     </li>
                 </ul>
             </div>
+
             <div class="fr page">
                 <div class="sui-pagination pagination-large">
                     <ul>
