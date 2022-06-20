@@ -38,6 +38,7 @@ public class SearchController {
         // 组装用户访问的 url
         model.addAttribute("url", UrlUtils.map2url("/web/search", searchMap, "page"));
         model.addAttribute("urlSort", UrlUtils.map2url("/web/search", searchMap, "orderType", "orderField", "page"));
+        // 结果列表
         model.addAttribute("result", resultMap.getData());
         // 搜索框
         model.addAttribute("searchMap", searchMap);

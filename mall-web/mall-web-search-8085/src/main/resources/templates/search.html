@@ -581,6 +581,7 @@
         </div>
     </div>
 </div>
+
 <!--list-content-->
 <div class="main">
     <div class="py-container">
@@ -734,39 +735,31 @@
                 </ul>
             </div>
 
+            <!-- 分页 -->
             <div class="fr page">
                 <div class="sui-pagination pagination-large">
                     <ul>
+                        <!-- 上一页 -->
                         <li class="prev disabled">
-                            <a href="#">«上一页</a>
+                            <a th:href="@{${url}(page=${result.pageInfo.upper})}">«上一页</a>
                         </li>
-                        <li class="active">
-                            <a href="#">1</a>
+
+                        <!-- 跳转页 -->
+                        <li th:each="num:${#numbers.sequence(result.pageInfo.lpage,result.pageInfo.rpage)}"
+                            th:class="${num}==${result.pageInfo.currentpage}? 'active':''">
+                            <a th:href="@{${url}(page=${num})}" th:text="${num}"></a>
                         </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
-                        </li>
-                        <li class="dotted"><span>...</span></li>
+
+                        <!-- 下一页 -->
                         <li class="next">
-                            <a href="#">下一页»</a>
+                            <a th:href="@{${url}(page=${result.pageInfo.next})}">下一页»</a>
                         </li>
                     </ul>
-                    <div><span>共10页&nbsp;</span><span>
-      到第
-      <input type="text" class="page-num">
-      页 </span></div>
-                </div>
+
+                    <div><span>共<i th:text="${result.pageInfo.last}"></i>页&nbsp;</span><span>到第<input type="text" class="page-num">页 </span></div></div>
             </div>
         </div>
+
         <!--hotsale-->
         <div class="clearfix hot-sale">
             <h4 class="title">热卖商品</h4>

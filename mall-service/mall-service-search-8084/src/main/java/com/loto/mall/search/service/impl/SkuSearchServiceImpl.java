@@ -5,6 +5,7 @@ import com.loto.mall.api.search.model.SkuSearch;
 import com.loto.mall.search.mapper.SkuSearchMapper;
 import com.loto.mall.search.service.SkuSearchService;
 import com.loto.mall.search.util.HighlightResultMapper;
+import com.loto.mall.util.common.PageInfo;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.Aggregation;
@@ -114,6 +115,11 @@ public class SkuSearchServiceImpl implements SkuSearchService {
 
         List<SkuSearch> list = page.getContent();
         resultMap.put("list", list);
+
+        // 分页
+        int currentPage = queryBuilder.build().getPageable().getPageNumber() + 1;
+        PageInfo pageInfo = new PageInfo(page.getTotalElements(), currentPage, 5);
+        resultMap.put("pageInfo", pageInfo);
 
         return resultMap;
     }
