@@ -19,6 +19,7 @@
         <module>mall-api-detail</module>
         <module>mall-api-cart</module>
         <module>mall-api-user</module>
+        <module>mall-api-order</module>
     </modules>
 
     <properties>
