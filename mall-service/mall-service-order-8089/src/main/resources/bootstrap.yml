@@ -20,6 +20,10 @@ spring:
         server-addr: 47.93.250.162:8848
         namespace: 1cf8feaa-22a7-4cea-ac42-ecf7876cb8cb   # 命名空间id
 
+  # 允许覆盖重复的bean
+  main:
+    allow-bean-definition-overriding: true
+
 # MybatisPlus
 mybatis-plus:
   mapper-locations: mapper/*.xml
