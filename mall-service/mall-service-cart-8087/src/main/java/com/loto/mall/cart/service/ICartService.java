@@ -26,4 +26,11 @@ public interface ICartService {
      * @return
      */
     List<Cart> list(String userName);
+
+    /**
+     * 结算页面 - 根据购物车的ID集合查询购物车数据
+     * @param ids
+     * @return
+     */
+    List<Cart> list(List<String> ids);
 }

@@ -1,5 +1,6 @@
 package com.loto.mall.cart.service.impl;
 
+import com.google.common.collect.Lists;
 import com.loto.mall.api.cart.model.Cart;
 import com.loto.mall.api.goods.feign.SkuFeign;
 import com.loto.mall.api.goods.model.Sku;
@@ -53,6 +54,7 @@ public class CartServiceImpl implements ICartService {
 
     /**
      * 购物车列表
+     *
      * @param userName
      * @return
      */
@@ -63,5 +65,21 @@ public class CartServiceImpl implements ICartService {
         cart.setUserName(userName);
 
         return cartMapper.findAll(Example.of(cart), Sort.by("_id"));
+    }
+
+    /**
+     * 结算页面 - 根据购物车的ID集合查询购物车数据
+     * @param ids
+     * @return
+     */
+    @Override
+    public List<Cart> list(List<String> ids) {
+        if (ids != null && ids.size() > 0) {
+            // 根据ID集合查询
+            Iterable<Cart> carts = cartMapper.findAllById(ids);
+            return Lists.newArrayList(carts);
+        }
+
+        return null;
     }
 }

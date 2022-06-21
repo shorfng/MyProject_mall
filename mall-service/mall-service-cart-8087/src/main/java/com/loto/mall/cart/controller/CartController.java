@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +29,7 @@ import java.util.List;
 @CrossOrigin
 public class CartController {
     @Autowired
-    private ICartService ICartService;
+    private ICartService cartService;
 
     @ApiOperation(value = "加入购物车")
     @GetMapping(value = "/{id}/{num}")
@@ -35,7 +37,7 @@ public class CartController {
                           @PathVariable(value = "num") Integer num) {
 
         String userName = "TD";
-        ICartService.add(id, userName, num);
+        cartService.add(id, userName, num);
         return RespResult.ok();
     }
 
@@ -43,7 +45,14 @@ public class CartController {
     @GetMapping(value = "/list")
     public RespResult<List<Cart>> list() {
         String userName = "TD";
-        List<Cart> list = ICartService.list(userName);
+        List<Cart> list = cartService.list(userName);
         return RespResult.ok(list);
+    }
+
+    @ApiOperation(value = "结算页面 - 根据购物车的ID集合查询购物车数据")
+    @PostMapping(value = "/list")
+    public RespResult<List<Cart>> list(@RequestBody List<String> ids){
+        List<Cart> carts = cartService.list(ids);
+        return RespResult.ok(carts);
     }
 }
