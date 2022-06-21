@@ -7,7 +7,11 @@ import com.loto.mall.cart.mapper.CartMapper;
 import com.loto.mall.cart.service.ICartService;
 import com.loto.mall.util.common.RespResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Author：蓝田_Loto<p>
@@ -45,5 +49,19 @@ public class CartServiceImpl implements ICartService {
             Cart cart = new Cart(userName + id, userName, sku.getName(), sku.getPrice(), sku.getImage(), id, num);
             cartMapper.save(cart);
         }
+    }
+
+    /**
+     * 购物车列表
+     * @param userName
+     * @return
+     */
+    @Override
+    public List<Cart> list(String userName) {
+        // 条件构建
+        Cart cart = new Cart();
+        cart.setUserName(userName);
+
+        return cartMapper.findAll(Example.of(cart), Sort.by("_id"));
     }
 }
