@@ -52,4 +52,11 @@ public class SkuController {
         List<Sku> adSkuItems = skuService.updateTypeItems(typeId);
         return adSkuItems;
     }
+
+    @ApiOperation(value = "根据ID查询Sku商品详情")
+    @GetMapping(value = "/{id}")
+    public RespResult<Sku> one(@PathVariable(value = "id") String id) {
+        Sku sku = skuService.getById(id);
+        return RespResult.ok(sku);
+    }
 }

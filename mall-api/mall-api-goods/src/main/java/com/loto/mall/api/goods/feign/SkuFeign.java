@@ -34,4 +34,8 @@ public interface SkuFeign {
     @ApiOperation(value = "修改缓存（根据商品推广分类id，查询指定分类下的产品列表）")
     @PutMapping(value = "/aditems/type")
     List<Sku> updateTypeItems(@RequestParam(value = "typeId") Integer typeId);
+
+    @ApiOperation(value = "根据ID查询Sku商品详情")
+    @GetMapping(value = "/{id}")
+    RespResult<Sku> one(@PathVariable(value = "id") String id);
 }
