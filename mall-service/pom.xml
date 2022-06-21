@@ -19,6 +19,7 @@
         <module>mall-service-canal-8083</module>
         <module>mall-service-search-8084</module>
         <module>mall-service-cart-8087</module>
+        <module>mall-service-user-8088</module>
     </modules>
 
     <properties>
