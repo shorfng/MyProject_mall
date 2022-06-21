@@ -10,6 +10,9 @@ import com.loto.mall.util.common.RespResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +31,9 @@ public class CartServiceImpl implements ICartService {
 
     @Autowired
     private SkuFeign skuFeign;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     /**
      * 加入购物车
@@ -69,6 +75,7 @@ public class CartServiceImpl implements ICartService {
 
     /**
      * 结算页面 - 根据购物车的ID集合查询购物车数据
+     *
      * @param ids
      * @return
      */
@@ -81,5 +88,16 @@ public class CartServiceImpl implements ICartService {
         }
 
         return null;
+    }
+
+    /**
+     * 根据 ids 删除购物车数据
+     *
+     * @param ids
+     */
+    @Override
+    public void delete(List<String> ids) {
+        // _id in(ids)
+        mongoTemplate.remove(Query.query(Criteria.where("_id").in(ids)), Cart.class);
     }
 }

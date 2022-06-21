@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,8 +52,15 @@ public class CartController {
 
     @ApiOperation(value = "结算页面 - 根据购物车的ID集合查询购物车数据")
     @PostMapping(value = "/list")
-    public RespResult<List<Cart>> list(@RequestBody List<String> ids){
+    public RespResult<List<Cart>> list(@RequestBody List<String> ids) {
         List<Cart> carts = cartService.list(ids);
         return RespResult.ok(carts);
+    }
+
+    @ApiOperation(value = "根据 ids 删除购物车数据")
+    @DeleteMapping
+    public RespResult delete(@RequestBody List<String> ids) {
+        cartService.delete(ids);
+        return RespResult.ok();
     }
 }

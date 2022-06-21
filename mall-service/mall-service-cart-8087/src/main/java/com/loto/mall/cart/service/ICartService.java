@@ -33,4 +33,10 @@ public interface ICartService {
      * @return
      */
     List<Cart> list(List<String> ids);
+
+    /**
+     * 根据 ids 删除购物车数据
+     * @param ids
+     */
+    void delete(List<String> ids);
 }
