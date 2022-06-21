@@ -2,6 +2,7 @@ package com.loto.mall.service.goods.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.loto.mall.api.cart.model.Cart;
 import com.loto.mall.api.goods.model.AdItems;
 import com.loto.mall.api.goods.model.Sku;
 import com.loto.mall.service.goods.mapper.AdItemsMapper;
@@ -13,6 +14,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -85,5 +87,21 @@ public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements ISkuS
 
         // 根据 SkuId 查询产品列表信息（批量查询Sku）
         return skuIds.size() <= 0 ? null : skuMapper.selectBatchIds(skuIds);
+    }
+
+    /**
+     * 库存递减
+     *
+     * @param carts
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void deleteCount(List<Cart> carts) {
+        for (Cart cart : carts) {
+            int deleteCount = skuMapper.deleteCount(cart.getSkuId(), cart.getNum());
+            if (deleteCount <= 0) {
+                throw new RuntimeException("库存不足！");
+            }
+        }
     }
 }

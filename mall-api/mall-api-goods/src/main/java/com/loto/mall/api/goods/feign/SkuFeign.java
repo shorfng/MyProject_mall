@@ -1,5 +1,6 @@
 package com.loto.mall.api.goods.feign;
 
+import com.loto.mall.api.cart.model.Cart;
 import com.loto.mall.api.goods.model.Sku;
 import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.ApiOperation;
@@ -7,7 +8,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,4 +41,8 @@ public interface SkuFeign {
     @ApiOperation(value = "根据ID查询Sku商品详情")
     @GetMapping(value = "/{id}")
     RespResult<Sku> one(@PathVariable(value = "id") String id);
+
+    @ApiOperation(value = "库存递减")
+    @PostMapping(value = "/deleteCount")
+    RespResult deleteCount(@RequestBody List<Cart> carts);
 }

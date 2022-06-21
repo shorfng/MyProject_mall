@@ -1,5 +1,6 @@
 package com.loto.mall.service.goods.controller;
 
+import com.loto.mall.api.cart.model.Cart;
 import com.loto.mall.api.goods.model.Sku;
 import com.loto.mall.service.goods.service.ISkuService;
 import com.loto.mall.util.common.RespResult;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,5 +61,12 @@ public class SkuController {
     public RespResult<Sku> one(@PathVariable(value = "id") String id) {
         Sku sku = skuService.getById(id);
         return RespResult.ok(sku);
+    }
+
+    @ApiOperation(value = "库存递减")
+    @PostMapping(value = "/deleteCount")
+    public RespResult deleteCount(@RequestBody List<Cart> carts) {
+        skuService.deleteCount(carts);
+        return RespResult.ok();
     }
 }

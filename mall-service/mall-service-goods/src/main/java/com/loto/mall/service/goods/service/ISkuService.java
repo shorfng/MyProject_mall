@@ -1,6 +1,7 @@
 package com.loto.mall.service.goods.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.loto.mall.api.cart.model.Cart;
 import com.loto.mall.api.goods.model.Sku;
 
 import java.util.List;
@@ -35,4 +36,10 @@ public interface ISkuService extends IService<Sku> {
      * @param typeId
      */
     List<Sku> updateTypeItems(Integer typeId);
+
+    /**
+     * 库存递减
+     * @param carts
+     */
+    void deleteCount(List<Cart> carts);
 }
