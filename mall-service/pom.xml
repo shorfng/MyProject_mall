@@ -21,6 +21,7 @@
         <module>mall-service-cart-8087</module>
         <module>mall-service-user-8088</module>
         <module>mall-service-order-8089</module>
+        <module>mall-service-pay-8090</module>
     </modules>
 
     <properties>
