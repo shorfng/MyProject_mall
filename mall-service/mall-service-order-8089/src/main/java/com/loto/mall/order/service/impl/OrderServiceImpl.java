@@ -12,6 +12,7 @@ import com.loto.mall.order.mapper.OrderMapper;
 import com.loto.mall.order.mapper.OrderSkuMapper;
 import com.loto.mall.order.service.IOrderService;
 import com.loto.mall.util.common.RespResult;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     /**
      * 生成订单
      */
+    @GlobalTransactional  // seata 全局事务控制
     @Override
     public Boolean add(Order order) {
         order.setId(IdWorker.getIdStr());   // MybatisPlus 提供的自动生成id

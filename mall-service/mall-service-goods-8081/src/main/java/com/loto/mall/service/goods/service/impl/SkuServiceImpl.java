@@ -94,7 +94,7 @@ public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements ISkuS
      *
      * @param carts
      */
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)  // 本地事务回滚
     @Override
     public void deleteCount(List<Cart> carts) {
         for (Cart cart : carts) {
