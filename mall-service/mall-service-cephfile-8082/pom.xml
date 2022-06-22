@@ -9,7 +9,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>mall-service-cephfile</artifactId>
+    <artifactId>mall-service-cephfile-8082</artifactId>
     <description>文件上传和下载微服务</description>
 
     <properties>
