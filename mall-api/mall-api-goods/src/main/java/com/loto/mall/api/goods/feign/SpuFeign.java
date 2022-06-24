@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * Function：
  */
 
-@FeignClient(value = "mall-goods")
+@FeignClient(value = "mall-service-8081-goods")
 public interface SpuFeign {
     @ApiOperation(value = "根据 spuId 查询商品信息")
     @GetMapping(value = "/spu/product/{id}")

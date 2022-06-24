@@ -3,26 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>MyProject_mall</artifactId>
+        <artifactId>mall-service</artifactId>
         <groupId>com.loto.mall</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>mall-service</artifactId>
-    <packaging>pom</packaging>
-    <description>所有微服务工程的父工程</description>
-
-    <modules>
-        <module>mall-service-8081-goods</module>
-        <module>mall-service-8071-cephfile</module>
-        <module>mall-service-8072-canal</module>
-        <module>mall-service-8082-search</module>
-        <module>mall-service-8084-cart</module>
-        <module>mall-service-8085-user</module>
-        <module>mall-service-8086-order</module>
-        <module>mall-service-8087-pay</module>
-    </modules>
+    <artifactId>mall-service-8072-canal</artifactId>
+    <description>Canal微服务</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -30,17 +18,31 @@
     </properties>
 
     <dependencies>
-        <!--jar包依赖-->
+        <!-- springboot-canal 快速构建依赖包 -->
+        <dependency>
+            <groupId>top.javatool</groupId>
+            <artifactId>canal-spring-boot-starter</artifactId>
+            <version>1.2.1-RELEASE</version>
+        </dependency>
+
+        <!-- 依赖 mall-api-goods -->
         <dependency>
             <groupId>com.loto.mall</groupId>
-            <artifactId>mall-service-dependency</artifactId>
+            <artifactId>mall-api-goods</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <!--工具包依赖-->
+        <!-- 依赖 mall-api-search -->
         <dependency>
             <groupId>com.loto.mall</groupId>
-            <artifactId>mall-common</artifactId>
+            <artifactId>mall-api-search</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- 依赖 mall-api-detail -->
+        <dependency>
+            <groupId>com.loto.mall</groupId>
+            <artifactId>mall-api-detail</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

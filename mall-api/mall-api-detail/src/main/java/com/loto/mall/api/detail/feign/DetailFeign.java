@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Function：
  */
 
-@FeignClient(value = "mall-web-detail")
+@FeignClient(value = "mall-web-9083-detail")
 @RequestMapping(value = "/detail")
 public interface DetailFeign {
     @ApiOperation(value = "生成商品详情的静态页")

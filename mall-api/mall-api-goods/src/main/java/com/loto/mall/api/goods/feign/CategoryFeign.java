@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * Function：
  */
 
-@FeignClient(value = "mall-goods")
+@FeignClient(value = "mall-service-8081-goods")
 public interface CategoryFeign {
     @ApiOperation(value = "根据分类查询分类信息")
     @GetMapping(value = "/category/{id}")

@@ -23,7 +23,7 @@ import java.util.List;
  * Function：
  */
 
-@FeignClient(value = "mall-goods")    //服务名字
+@FeignClient(value = "mall-service-8081-goods")    //服务名字
 @RequestMapping("/sku")
 public interface SkuFeign {
     @ApiOperation(value = "根据商品推广分类id，查询指定分类下的产品列表")

@@ -19,7 +19,7 @@ import java.util.List;
  * Function：
  */
 
-@FeignClient(value = "mall-cart")
+@FeignClient(value = "mall-service-8084-cart")
 @RequestMapping(value = "/cart")
 public interface CartFeign {
     @ApiOperation(value = "购物车列表")

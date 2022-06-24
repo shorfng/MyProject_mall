@@ -21,7 +21,7 @@ import java.util.Map;
  * Function：
  */
 
-@FeignClient(value = "mall-search")
+@FeignClient(value = "mall-service-8082-search")
 public interface SkuSearchFeign {
     @ApiOperation(value = "增加索引")
     @PostMapping(value = "/search/add")

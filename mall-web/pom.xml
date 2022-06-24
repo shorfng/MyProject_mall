@@ -14,8 +14,8 @@
     <description>管理涉及到页面渲染的工程</description>
 
     <modules>
-        <module>mall-web-search-8085</module>
-        <module>mall-web-detail-8086</module>
+        <module>mall-web-9082-search</module>
+        <module>mall-web-9083-detail</module>
     </modules>
 
     <properties>
