@@ -36,5 +36,6 @@ mybatis-plus:
 logging:
   pattern:
     console: "%msg%n"
-
+  level:
+    root: error
 
