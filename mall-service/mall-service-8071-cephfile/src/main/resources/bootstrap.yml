@@ -19,8 +19,3 @@ spring:
       discovery:
         server-addr: 47.93.250.162:8848
         namespace: 1cf8feaa-22a7-4cea-ac42-ecf7876cb8cb   # 命名空间id
-
-# 日志配置
-logging:
-  pattern:
-    console: "%msg%n"
