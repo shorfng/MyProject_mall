@@ -15,4 +15,9 @@ public interface IOrderService extends IService<Order> {
      * 生成订单
      */
     Boolean add(Order order);
+
+    /**
+     * 支付成功修改状态
+     */
+    int updateAfterPayStatus(String id);
 }

@@ -16,7 +16,7 @@
     <modules>
         <module>mall-service-goods-8081</module>
         <module>mall-service-cephfile-8082</module>
-        <module>mall-service-canal-8083</module>
+        <module>mall-service-8081-canal</module>
         <module>mall-service-search-8084</module>
         <module>mall-service-cart-8087</module>
         <module>mall-service-user-8088</module>

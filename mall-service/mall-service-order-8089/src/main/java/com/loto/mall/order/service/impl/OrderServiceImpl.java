@@ -1,6 +1,7 @@
 package com.loto.mall.order.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.loto.mall.api.cart.feign.CartFeign;
@@ -92,5 +93,27 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         // 5、删除购物车数据
         cartFeign.delete(order.getCartIds());
         return true;
+    }
+
+    /**
+     * 支付成功修改状态
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public int updateAfterPayStatus(String id) {
+        // 修改状态
+        Order order = new Order();
+        order.setId(id);
+        order.setOrderStatus(1); // 待发货
+        order.setPayStatus(1);   // 已支付
+
+        // 修改条件
+        QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id", id);
+        queryWrapper.eq("order_status", 0);  // 订单状态，0:未完成
+        queryWrapper.eq("pay_status", 0);    // 支付状态，0:未支付
+        return orderMapper.update(order, queryWrapper);
     }
 }

@@ -47,6 +47,17 @@ public class OrderResultMQListener implements RocketMQListener, RocketMQPushCons
             for (MessageExt msg : msgs) {
                 String result = new String(msg.getBody(), StandardCharsets.UTF_8);
                 System.out.println("----------- result：" + result);
+
+                PayLog payLog = JSON.parseObject(result, PayLog.class);
+                if (payLog.getStatus() == 2) {
+                    // 支付成功
+                    int count = orderService.updateAfterPayStatus(payLog.getPayId());
+                    System.out.println(payLog.getId() + " ----------- " + count);
+                } else {
+                    // TODO 支付失败
+                    // 1：修改订单状态
+                    // 2：库存回滚（允许30分钟内再次支付）
+                }
             }
 
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;

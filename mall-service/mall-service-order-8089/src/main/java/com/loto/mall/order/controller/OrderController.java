@@ -1,6 +1,7 @@
 package com.loto.mall.order.controller;
 
 import com.loto.mall.api.order.model.Order;
+import com.loto.mall.order.pay.WeiXinPayParam;
 import com.loto.mall.order.service.IOrderService;
 import com.loto.mall.util.common.RespCode;
 import com.loto.mall.util.common.RespResult;
@@ -30,14 +31,18 @@ public class OrderController {
     @Autowired
     private IOrderService orderService;
 
+    @Autowired
+    private WeiXinPayParam weiXinPayParam;
+
     @ApiOperation(value = "生成订单")
     @PostMapping
-    public RespResult add(@RequestBody Order order) {
+    public RespResult add(@RequestBody Order order, HttpServletRequest request) throws Exception {
         // 用户名字
         order.setUsername("TD");
 
         // 下单
         Boolean bo = orderService.add(order);
-        return bo ? RespResult.ok() : RespResult.error(RespCode.ERROR);
+        String ciphertext = weiXinPayParam.weiXinParam(order, request);
+        return bo ? RespResult.ok(ciphertext) : RespResult.error(RespCode.ERROR);
     }
 }
