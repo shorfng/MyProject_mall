@@ -7,11 +7,15 @@ import com.github.wxpay.sdk.WXPayUtil;
 import com.loto.mall.api.pay.model.PayLog;
 import com.loto.mall.pay.service.IWeiXinPayService;
 import com.loto.mall.util.common.RespResult;
+import com.loto.mall.util.security.AESUtil;
+import com.loto.mall.util.security.Base64Util;
+import com.loto.mall.util.security.MD5;
 import com.loto.mall.util.security.Signature;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -49,6 +53,10 @@ public class WeiXinPayController {
 
     @Autowired
     private Signature signature;
+
+    // 密钥
+    @Value("${payConfig.weixin.key}")
+    private String skey;
 
     @ApiOperation(value = "微信支付 - 二维码获取")
     @GetMapping(value = "/pay")
@@ -96,7 +104,6 @@ public class WeiXinPayController {
         outputStream.close();
         inputStream.close();
 
-
         // 将支付结果的 XML 结构，转换成 Map 结构
         String xmlResult = new String(outputStream.toByteArray(), StandardCharsets.UTF_8);
         Map<String, String> map = WXPayUtil.xmlToMap(xmlResult);
@@ -127,4 +134,43 @@ public class WeiXinPayController {
         return WXPayUtil.mapToXml(resultResp);
     }
 
+    @ApiOperation(value = "申请退款")
+    @RequestMapping(value = "/refund/result")
+    public String refund(HttpServletRequest request) throws Exception {
+        // 读取网络输入流
+        ServletInputStream is = request.getInputStream();
+
+        // 定义接收输入流对象（输出流）
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+
+        // 将网络输入流读取到输出流中
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while ((len = is.read(buffer)) != -1) {
+            os.write(buffer, 0, len);
+        }
+
+        // 关闭资源
+        os.close();
+        is.close();
+
+        // 将支付结果的 XML 结构，转换成 Map 结构
+        String xmlResult = new String(os.toByteArray(), StandardCharsets.UTF_8);
+        Map<String, String> map = WXPayUtil.xmlToMap(xmlResult);
+        System.out.println("退款数据-xmlResult:" + xmlResult);
+
+        // 获取退款信息（使用 AES 加密后的数据）
+        String reqInfo = map.get("req_info");
+        String key = MD5.md5(skey);  // 密钥需要使用MD5转成小写字母的32位数据（微信支付退款文档写的需要32位）
+
+        // 解密
+        byte[] decode = AESUtil.encryptAndDecrypt(Base64Util.decode(reqInfo), key, 2);
+        System.out.println("退款解密后的数据：" + new String(decode, StandardCharsets.UTF_8));
+
+        // Map 响应数据
+        Map<String, String> resultResp = new HashMap<>();
+        resultResp.put("return_code", "SUCCESS");
+        resultResp.put("return_msg", "OK");
+        return WXPayUtil.mapToXml(resultResp);
+    }
 }

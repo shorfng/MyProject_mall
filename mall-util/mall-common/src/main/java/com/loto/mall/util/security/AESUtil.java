@@ -48,9 +48,26 @@ public class AESUtil {
      * 加密解密测试
      */
     public static void main(String[] args) throws Exception {
+        //Integer mode = 1;   // 1加密 2解密
+        //String txt = "SpringCloud Alibaba";     // 明文
+        //String appSecret = "aaaaaaaaaaaaaaaa";  // 密钥（可以使用 128/192/256 bite） 128bite 对应16位
+        //
+        //// 加密
+        //byte[] bytes = encryptAndDecrypt(txt.getBytes(StandardCharsets.UTF_8), appSecret, mode);
+        //String encode = Base64Util.encode(bytes);
+        //System.out.println("加密后：" + encode);
+        //
+        //// 解密（先使用 Base64 解码，再使用 AES 解密）
+        //byte[] decode = encryptAndDecrypt(Base64Util.decode(encode), appSecret, 2);
+        //System.out.println(new String(decode, StandardCharsets.UTF_8));
+
+        Integer mode = 1;   // 1加密 2解密
         String txt = "SpringCloud Alibaba";     // 明文
         String appSecret = "aaaaaaaaaaaaaaaa";  // 密钥（可以使用 128/192/256 bite） 128bite 对应16位
-        Integer mode = 1;   // 1加密 2解密
+
+        // 对密钥md5加密，加密的结果字母都为小写
+        appSecret = MD5.md5(appSecret);
+        System.out.println("对密钥md5加密，加密的结果字母都为小写：" + appSecret);
 
         // 加密
         byte[] bytes = encryptAndDecrypt(txt.getBytes(StandardCharsets.UTF_8), appSecret, mode);

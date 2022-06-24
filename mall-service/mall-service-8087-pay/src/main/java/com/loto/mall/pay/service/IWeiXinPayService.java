@@ -27,4 +27,9 @@ public interface IWeiXinPayService {
      * @throws Exception
      */
     PayLog result(String outTradeNo) throws Exception;
+
+    /**
+     * 申请退款操作
+     */
+    Map<String,String> refund(Map<String,String> dataMap) throws Exception;
 }

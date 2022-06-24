@@ -74,6 +74,7 @@ public class WeiXinPayServiceImpl implements IWeiXinPayService {
 
     /**
      * 支付状态
+     *
      * @param tradeState
      * @return
      */
@@ -108,4 +109,16 @@ public class WeiXinPayServiceImpl implements IWeiXinPayService {
 
         return state;
     }
+
+    /**
+     * 申请退款操作
+     *
+     * @param dataMap
+     * @return
+     */
+    @Override
+    public Map<String, String> refund(Map<String, String> dataMap) throws Exception {
+        return wxPay.refund(dataMap);
+    }
+
 }

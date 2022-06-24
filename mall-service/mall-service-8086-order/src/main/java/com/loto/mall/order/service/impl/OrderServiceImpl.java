@@ -8,8 +8,10 @@ import com.loto.mall.api.cart.feign.CartFeign;
 import com.loto.mall.api.cart.model.Cart;
 import com.loto.mall.api.goods.feign.SkuFeign;
 import com.loto.mall.api.order.model.Order;
+import com.loto.mall.api.order.model.OrderRefund;
 import com.loto.mall.api.order.model.OrderSku;
 import com.loto.mall.order.mapper.OrderMapper;
+import com.loto.mall.order.mapper.OrderRefundMapper;
 import com.loto.mall.order.mapper.OrderSkuMapper;
 import com.loto.mall.order.service.IOrderService;
 import com.loto.mall.util.common.RespResult;
@@ -41,10 +43,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Autowired
     private SkuFeign skuFeign;
 
+    @Autowired
+    private OrderRefundMapper orderRefundMapper;
+
     /**
      * 生成订单
      */
-    @GlobalTransactional  // seata 全局事务控制
+    //@GlobalTransactional  // seata 全局事务控制
     @Override
     public Boolean add(Order order) {
         order.setId(IdWorker.getIdStr());   // MybatisPlus 提供的自动生成id
@@ -115,5 +120,31 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         queryWrapper.eq("order_status", 0);  // 订单状态，0:未完成
         queryWrapper.eq("pay_status", 0);    // 支付状态，0:未支付
         return orderMapper.update(order, queryWrapper);
+    }
+
+    /**
+     * 退款
+     *
+     * @param orderRefund
+     * @return
+     */
+    @Override
+    public int refund(OrderRefund orderRefund) {
+        // 记录退款申请
+        orderRefundMapper.insert(orderRefund);
+
+        // 修改订单状态
+        Order order = new Order();
+        order.setOrderStatus(4);   // 申请退款
+
+        // 构建条件
+        QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id", orderRefund.getOrderNo());        // 订单ID
+        queryWrapper.eq("username", orderRefund.getUsername()); // 用户名
+        queryWrapper.eq("order_status", 1);
+        queryWrapper.eq("pay_status", 1);
+        int count = orderMapper.update(order, queryWrapper);
+
+        return count;
     }
 }

@@ -38,3 +38,17 @@ create table `order_sku`
     key        `item_id` (`sku_id`),
     key        `order_id` (`order_id`)
 ) engine=innodb default charset=utf8 comment ='订单明细表';
+
+
+create table `order_refund`
+(
+    `id`           varchar(60) not null,
+    `order_no`     varchar(60) not null comment '退款订单',
+    `refund_type`  int(1) not null comment '退款类型：0 整个订单退款，1：指定订单明细退款',
+    `order_sku_id` varchar(60) default null comment '退款订单明细，当refund_type=1的时候填写该id值',
+    `status`       int(1) not null comment '状态，0：申请退款，1：退款成功，2：退款失败',
+    `username`     varchar(50) not null,
+    `create_time`  datetime    not null,
+    `money`        int(11) not null comment '退款金额',
+    primary key (`id`)
+) engine=innodb default charset=utf8 comment ='退款记录表';

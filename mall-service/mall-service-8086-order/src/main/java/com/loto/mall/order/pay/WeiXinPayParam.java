@@ -1,6 +1,7 @@
 package com.loto.mall.order.pay;
 
 import com.loto.mall.api.order.model.Order;
+import com.loto.mall.api.order.model.OrderRefund;
 import com.loto.mall.util.security.Signature;
 import com.loto.mall.utils.IPUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,23 @@ public class WeiXinPayParam {
         data.put("spbill_create_ip", IPUtils.getIpAddr(request));  // 客户端IP
         data.put("notify_url", "http://2cw4969042.wicp.vip:48847/wxPay/result");  // 回调地址（支付结果通知地址）（ip和端口号可以用过花生壳软件生成）
         data.put("trade_type", "NATIVE");  // 此处指定为扫码支付
+
+        // 将 data -> 转成 TreeMap -> MD5 加密 -> 存到 Map -> 转成 JSON -> AES 加密
+        return signature.security(data);
+    }
+
+    /**
+     * 支付数据处理
+     */
+    public String weiXinRefundParam(OrderRefund orderRefund) throws Exception {
+        // 预支付下单需要用到的数据
+        Map<String, String> data = new HashMap<>();
+        data.put("out_trade_no", orderRefund.getOrderNo());  // 订单号
+        data.put("out_refund_no",orderRefund.getId());       // 退款订单号
+        //data.put("total_fee",String.valueOf(orderRefund.getMoney()));     // 支付金额
+        data.put("total_fee","1");    // 支付金额
+        data.put("refund_fee","1");   // 退款金额
+        data.put("notify_url", "http://2cw4969042.wicp.vip:48847/wxPay/refund/result");  //回调地址（退款申请结果通知地址）（ip和端口号可以用过花生壳软件生成）
 
         // 将 data -> 转成 TreeMap -> MD5 加密 -> 存到 Map -> 转成 JSON -> AES 加密
         return signature.security(data);

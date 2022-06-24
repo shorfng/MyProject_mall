@@ -2,6 +2,7 @@ package com.loto.mall.order.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.loto.mall.api.order.model.Order;
+import com.loto.mall.api.order.model.OrderRefund;
 
 /**
  * Author：蓝田_Loto<p>
@@ -20,4 +21,9 @@ public interface IOrderService extends IService<Order> {
      * 支付成功修改状态
      */
     int updateAfterPayStatus(String id);
+
+    /**
+     * 退款
+     */
+    int refund(OrderRefund orderRefund);
 }
