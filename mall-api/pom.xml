@@ -21,6 +21,7 @@
         <module>mall-api-user</module>
         <module>mall-api-order</module>
         <module>mall-api-pay</module>
+        <module>mall-api-seckill</module>
     </modules>
 
     <properties>
