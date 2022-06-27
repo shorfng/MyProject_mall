@@ -39,5 +39,5 @@ public class SecKillGoods {
     private String activityId;
 
     // 商品锁定状态（0未锁定 1已锁定）
-    private Integer islock;
+    //private Integer islock;
 }

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <title>秒杀产品详情页</title>
-    <link rel="icon" href="./img/favicon.ico">
+    <link rel="icon" href="../static/img/favicon.ico">
     <!-- 引入样式 -->
-    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/icon.css"/>
 </head>
 
 <body>
@@ -1823,13 +1823,12 @@
         <!--product-info-->
         <div class="product-info">
             <div class="fl preview-wrap">
-                <!--放大镜效果-->
+                <!-- 放大镜效果 -->
                 <div class="zoom">
-                    <!--默认第一个预览-->
+                    <!-- 默认第一个预览 -->
                     <div id="preview" class="spec-preview">
 							<span class="jqzoom">
-								<img th:jqimg="${images[0]}" th:src="${images[0]}"
-                                     style="max-height: 400px;max-width: 400px;" width="400" height="400"/>
+								<img jqimg="https://img10.360buyimg.com/n7/jfs/t1/51315/11/15577/93321/5dc93712Ed15f694a/1c5e5965995fcd86.jpg" src="https://img10.360buyimg.com/n7/jfs/t1/51315/11/15577/93321/5dc93712Ed15f694a/1c5e5965995fcd86.jpg" style="max-height: 400px;max-width: 400px;" width="400" height="400"/>
 							</span>
                     </div>
 
@@ -1839,8 +1838,8 @@
                         <!--左右按钮-->
                         <div class="items">
                             <ul>
-                                <li th:each="image:${images}">
-                                    <img th:src="${image}" th:bimg="${image}" onmousemove="preview(this)"/>
+                                <li>
+                                    <img src="https://img10.360buyimg.com/n7/jfs/t1/51315/11/15577/93321/5dc93712Ed15f694a/1c5e5965995fcd86.jpg" bimg="https://img10.360buyimg.com/n7/jfs/t1/51315/11/15577/93321/5dc93712Ed15f694a/1c5e5965995fcd86.jpg" onmousemove="preview(this)"/>
                                 </li>
                             </ul>
                         </div>
@@ -1849,9 +1848,12 @@
                 </div>
             </div>
             <div class="fr itemInfo-wrap" id="app">
+
                 <div class="sku-name">
-                    <h4 th:text="${item.name}"></h4>
+                    <h4>京东超市
+              荣耀手环4 标准版 智能运动 AMOLED彩屏触控 50米防水+泳姿识别 实时心率检测 科学睡眠 适配安卓&amp;iOS 陨石黑</h4>
                 </div>
+
                 <div>
                     <span>推荐选择下方[移动优惠购],手机套餐齐搞定,不用换号,每月还有花费返</span>
                 </div>
@@ -1860,16 +1862,19 @@
                         <div class="fl title">
                             <i>价　　格</i>
                         </div>
+
                         <div class="fl price">
                             <i>¥</i>
-                            <em th:text="${item.seckillPrice}"></em>
+                            <em>129</em>
                             <span>降价通知</span>
                         </div>
+
                         <div class="fr remark">
                             <i>累计评价</i>
                             <em>11111</em>
                         </div>
                     </div>
+
                     <div class="summary-wrap">
                         <div class="fl title">
                             <i>促　　销</i>
@@ -1909,6 +1914,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="fl">
                             <ul class="btn-choose unstyled">
                                 <li>
@@ -1929,7 +1935,7 @@
                         <div class="fl master ">
                             <div class="list-wrap ">
                                 <div class="p-img ">
-                                    <img src="./img/_/l-m01.png "/>
+                                    <img src="../static/img/_/l-m01.png "/>
                                 </div>
                                 <em>￥5299</em>
                                 <i>+</i>
@@ -1939,7 +1945,7 @@
                             <ul class="suit-list ">
                                 <li class=" ">
                                     <div id=" ">
-                                        <img src="./img/_/dp01.png "/>
+                                        <img src="../static/img/_/dp01.png "/>
                                     </div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox " class="checkbox-pretty ">
@@ -1949,7 +1955,7 @@
                                 </li>
                                 <li class=" ">
                                     <div id=" ">
-                                        <img src="./img/_/dp02.png "/></div>
+                                        <img src="../static/img/_/dp02.png "/></div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox " class="checkbox-pretty ">
                                         <input type="checkbox ">
@@ -1958,7 +1964,7 @@
                                 </li>
                                 <li class=" ">
                                     <div id=" ">
-                                        <img src="./img/_/dp03.png "/>
+                                        <img src="../static/img/_/dp03.png "/>
                                     </div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox " class="checkbox-pretty ">
@@ -1968,7 +1974,7 @@
                                 </li>
                                 <li class=" ">
                                     <div id=" ">
-                                        <img src="./img/_/dp04.png "/>
+                                        <img src="../static/img/_/dp04.png "/>
                                     </div>
                                     <i>Feless费勒斯VR</i>
                                     <label data-toggle="checkbox " class="checkbox-pretty ">
@@ -2016,16 +2022,16 @@
                         <div id="one " class="tab-pane active ">
 
                             <div class="intro-detail ">
-                                <img src="./img/_/dt1.jpg "/>
-                                <img src="./img/_/dt2.jpg "/>
-                                <img src="./img/_/dt3.jpg "/>
-                                <img src="./img/_/dt4.jpg "/>
-                                <img src="./img/_/dt5.jpg "/>
-                                <img src="./img/_/dt6.jpg "/>
-                                <img src="./img/_/dt7.jpg "/>
-                                <img src="./img/_/dt8.jpg "/>
-                                <img src="./img/_/dt9.jpg "/>
-                                <img src="./img/_/dt10.jpg "/>
+                                <img src="../static/img/_/dt1.jpg "/>
+                                <img src="../static/img/_/dt2.jpg "/>
+                                <img src="../static/img/_/dt3.jpg "/>
+                                <img src="../static/img/_/dt4.jpg "/>
+                                <img src="../static/img/_/dt5.jpg "/>
+                                <img src="../static/img/_/dt6.jpg "/>
+                                <img src="../static/img/_/dt7.jpg "/>
+                                <img src="../static/img/_/dt8.jpg "/>
+                                <img src="../static/img/_/dt9.jpg "/>
+                                <img src="../static/img/_/dt10.jpg "/>
                             </div>
                         </div>
                         <div id="two " class="tab-pane ">
@@ -2088,7 +2094,7 @@
                                         <div class="com-item ">
                                             <div class="user-column ">
                                                 <div class="username ">
-                                                    <img src="./img/_/photo.jpg "/>135****3405
+                                                    <img src="../static/img/_/photo.jpg "/>135****3405
                                                 </div>
 
                                             </div>
@@ -2127,7 +2133,7 @@
                                         <div class="com-item ">
                                             <div class="user-column ">
                                                 <div class="username ">
-                                                    <img src="./img/_/photo.jpg "/>135****3405
+                                                    <img src="../static/img/_/photo.jpg "/>135****3405
                                                 </div>
 
                                             </div>
@@ -2160,7 +2166,7 @@
                                         <div class="com-item ">
                                             <div class="user-column ">
                                                 <div class="username ">
-                                                    <img src="./img/_/photo.jpg "/>135****3405
+                                                    <img src="../static/img/_/photo.jpg "/>135****3405
                                                 </div>
 
                                             </div>
@@ -2193,7 +2199,7 @@
                                         <div class="com-item ">
                                             <div class="user-column ">
                                                 <div class="username ">
-                                                    <img src="./img/_/photo.jpg "/>135****3405
+                                                    <img src="../static/img/_/photo.jpg "/>135****3405
                                                 </div>
 
                                             </div>
@@ -2226,7 +2232,7 @@
                                         <div class="com-item ">
                                             <div class="user-column ">
                                                 <div class="username ">
-                                                    <img src="./img/_/photo.jpg "/>135****3405
+                                                    <img src="../static/img/_/photo.jpg "/>135****3405
                                                 </div>
 
                                             </div>
@@ -2273,7 +2279,7 @@
                     <li class="yui3-u-1-6 ">
                         <div class="list-wrap ">
                             <div class="p-img ">
-                                <img src="./img/_/itemlike01.png "/>
+                                <img src="../static/img/_/itemlike01.png "/>
                             </div>
                             <div class="attr ">
                                 <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -2292,7 +2298,7 @@
                     <li class="yui3-u-1-6 ">
                         <div class="list-wrap ">
                             <div class="p-img ">
-                                <img src="./img/_/itemlike02.png "/>
+                                <img src="../static/img/_/itemlike02.png "/>
                             </div>
                             <div class="attr ">
                                 <em>Apple苹果iPhone 6s/6s Plus 16G 64G 128G</em>
@@ -2311,7 +2317,7 @@
                     <li class="yui3-u-1-6 ">
                         <div class="list-wrap ">
                             <div class="p-img ">
-                                <img src="./img/_/itemlike03.png "/>
+                                <img src="../static/img/_/itemlike03.png "/>
                             </div>
                             <div class="attr ">
                                 <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -2330,7 +2336,7 @@
                     <li class="yui3-u-1-6 ">
                         <div class="list-wrap ">
                             <div class="p-img ">
-                                <img src="./img/_/itemlike04.png "/>
+                                <img src="../static/img/_/itemlike04.png "/>
                             </div>
                             <div class="attr ">
                                 <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -2349,7 +2355,7 @@
                     <li class="yui3-u-1-6 ">
                         <div class="list-wrap ">
                             <div class="p-img ">
-                                <img src="./img/_/itemlike05.png "/>
+                                <img src="../static/img/_/itemlike05.png "/>
                             </div>
                             <div class="attr ">
                                 <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -2368,7 +2374,7 @@
                     <li class="yui3-u-1-6 ">
                         <div class="list-wrap ">
                             <div class="p-img ">
-                                <img src="./img/_/itemlike06.png "/>
+                                <img src="../static/img/_/itemlike06.png "/>
                             </div>
                             <div class="attr ">
                                 <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -2546,10 +2552,10 @@
     </div>
 </div>
 <!--页面底部END-->
-<script type="text/javascript " src="./js/jquery.min.js "></script>
-<script type="text/javascript " src="./js/sui/sui.min.js "></script>
-<script type="text/javascript " src="./js/jquery.jqzoom/jquery.jqzoom.js "></script>
-<script type="text/javascript " src="./js/jquery.jqzoom/zoom.js "></script>
+<script type="text/javascript " src="../static/js/jquery.min.js "></script>
+<script type="text/javascript " src="../static/js/sui/sui.min.js "></script>
+<script type="text/javascript " src="../static/js/jquery.jqzoom/jquery.jqzoom.js "></script>
+<script type="text/javascript " src="../static/js/jquery.jqzoom/zoom.js "></script>
 </body>
 
 </html>
