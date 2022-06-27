@@ -13,7 +13,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@EnableFeignClients(basePackages = {"com.loto.mall.api.goods.feign", "com.loto.mall.api.search.feign", "com.loto.mall.api.detail.feign"})
+@EnableFeignClients(basePackages = {
+        "com.loto.mall.api.goods.feign",
+        "com.loto.mall.api.search.feign",
+        "com.loto.mall.api.detail.feign",
+        "com.loto.mall.api.seckill.feign"})
 public class MallCanalApplication {
     public static void main(String[] args) {
         SpringApplication.run(MallCanalApplication.class, args);

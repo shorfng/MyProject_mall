@@ -45,5 +45,12 @@
             <artifactId>mall-api-detail</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!-- mall-api-seckill -->
+        <dependency>
+            <groupId>com.loto.mall</groupId>
+            <artifactId>mall-api-seckill</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
