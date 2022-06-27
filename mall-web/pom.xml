@@ -17,6 +17,7 @@
         <module>mall-web-9082-search</module>
         <module>mall-web-9083-detail</module>
         <module>mall-web-9084-cart</module>
+        <module>mall-web-9088-seckill</module>
     </modules>
 
     <properties>
