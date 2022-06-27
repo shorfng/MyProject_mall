@@ -17,7 +17,7 @@ import java.util.Map;
  */
 
 @Data
-@Document(indexName = "mall-sku-search", type = "mall")
+@Document(indexName = "mall-goods-sku", type = "mall")
 public class SkuSearch {
     @Id
     private String id;
