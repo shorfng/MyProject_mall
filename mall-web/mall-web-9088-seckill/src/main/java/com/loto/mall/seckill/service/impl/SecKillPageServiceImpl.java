@@ -67,7 +67,7 @@ public class SecKillPageServiceImpl implements SecKillPageService {
         if (goodsResp.getData() != null) {
             Map<String, Object> dataMap = new HashMap<>();
             dataMap.put("item", goodsResp.getData());
-            dataMap.put("images", goodsResp.getData().getImages().split(","));
+            dataMap.put("images", goodsResp.getData().getImages().split(","));  // 图片
             return dataMap;
         }
 

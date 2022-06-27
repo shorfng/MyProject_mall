@@ -20,14 +20,13 @@ import java.util.List;
  */
 
 @FeignClient(value = "mall-service-8084-cart")
-@RequestMapping(value = "/cart")
 public interface CartFeign {
     @ApiOperation(value = "购物车列表")
-    @GetMapping(value = "/list")
+    @GetMapping(value = "/cart/list")
     RespResult<List<Cart>> list();
 
     @ApiOperation(value = "结算页面 - 根据购物车的ID集合查询购物车数据")
-    @PostMapping(value = "/list")
+    @PostMapping(value = "/cart/list")
     RespResult<List<Cart>> list(@RequestBody List<String> ids);
 
     @ApiOperation(value = "根据 ids 删除购物车数据")

@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping(value = "/seckill/goods")
-@Api(value = "SecKillGoodsSearchController", tags = "秒杀-商品")
+@RequestMapping(value = "/seckill/search")
+@Api(value = "SecKillGoodsSearchController", tags = "秒杀-商品（ES）")
 public class SecKillGoodsSearchController {
     @Autowired
     private SecKillGoodsSearchService secKillGoodsSearchService;

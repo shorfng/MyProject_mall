@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @FeignClient(value = "mall-service-8088-seckill")
-@RequestMapping(value = "/seckill/goods")
 public interface SecKillGoodsFeign {
     @ApiOperation(value = "根据ID查询秒杀商品详情")
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/seckill/goods/{id}")
     RespResult<SecKillGoods> one(@PathVariable("id") String id);
 }

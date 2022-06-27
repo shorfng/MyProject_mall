@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @FeignClient(value = "mall-web-9083-detail")
-@RequestMapping(value = "/detail")
 public interface DetailFeign {
     @ApiOperation(value = "生成商品详情的静态页")
-    @GetMapping(value = "/{spuId}")
+    @GetMapping(value = "/detail/{spuId}")
     RespResult html(@PathVariable(value = "spuId") String spuId) throws Exception;
 }

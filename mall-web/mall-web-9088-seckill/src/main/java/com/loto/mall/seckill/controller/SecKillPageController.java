@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping(value = "/page")
+@RequestMapping(value = "/seckill/page")
 public class SecKillPageController {
     @Autowired
     private SecKillPageService secKillPageService;
 
     @ApiOperation(value = "秒杀商品详情页 - 生成")
-    @GetMapping(value = "/seckill/goods/{id}")
-    public RespResult page(@PathVariable("id") String id) throws Exception {
+    @GetMapping(value = "/general/{id}")
+    public RespResult general(@PathVariable("id") String id) throws Exception {
         // 生成秒杀商品详情页
         secKillPageService.html(id);
         return RespResult.ok();

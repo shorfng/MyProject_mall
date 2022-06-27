@@ -24,25 +24,24 @@ import java.util.List;
  */
 
 @FeignClient(value = "mall-service-8081-goods")    //服务名字
-@RequestMapping("/sku")
 public interface SkuFeign {
     @ApiOperation(value = "根据商品推广分类id，查询指定分类下的产品列表")
-    @GetMapping(value = "/aditems/type")
+    @GetMapping(value = "/sku/aditems/type")
     List<Sku> typeItems(@RequestParam(value = "typeId") Integer typeId);
 
     @ApiOperation(value = "删除缓存（根据商品推广分类id，查询指定分类下的产品列表）")
-    @DeleteMapping(value = "/aditems/type")
+    @DeleteMapping(value = "/sku/aditems/type")
     RespResult delTypeItems(@RequestParam(value = "typeId") Integer typeId);
 
     @ApiOperation(value = "修改缓存（根据商品推广分类id，查询指定分类下的产品列表）")
-    @PutMapping(value = "/aditems/type")
+    @PutMapping(value = "/sku/aditems/type")
     List<Sku> updateTypeItems(@RequestParam(value = "typeId") Integer typeId);
 
     @ApiOperation(value = "根据ID查询Sku商品详情")
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/sku/{id}")
     RespResult<Sku> one(@PathVariable(value = "id") String id);
 
     @ApiOperation(value = "库存递减")
-    @PostMapping(value = "/deleteCount")
+    @PostMapping(value = "/sku/deleteCount")
     RespResult deleteCount(@RequestBody List<Cart> carts);
 }

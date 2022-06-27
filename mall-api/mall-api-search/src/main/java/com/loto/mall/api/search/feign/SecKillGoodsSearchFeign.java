@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Author：蓝田_Loto<p>
@@ -17,6 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(value = "mall-service-8082-search")
 public interface SecKillGoodsSearchFeign {
     @ApiOperation(value = "秒杀商品同步ES索引库")
-    @PostMapping("/seckill/goods/import")
+    @PostMapping("/seckill/search/import")
     RespResult add(@RequestBody SecKillGoodsEs seckillGoodsEs);
 }
