@@ -56,6 +56,8 @@ public class SecKillPageServiceImpl implements SecKillPageService {
 
         // 执行合成生成
         templateEngine.process("seckillitem", context, writer);
+
+        writer.close();
     }
 
     /**
@@ -72,5 +74,19 @@ public class SecKillPageServiceImpl implements SecKillPageService {
         }
 
         return null;
+    }
+
+    /**
+     * 删除秒杀详情页
+     *
+     * @param id
+     */
+    @Override
+    public void delete(String id) {
+        // 创建要删除的文件对象
+        File file = new File(projectPath + secKillPagePath, id + ".html");
+        if (file.exists()) {
+            file.delete();
+        }
     }
 }

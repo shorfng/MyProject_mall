@@ -3,6 +3,7 @@ package com.loto.mall.api.seckill.feign;
 import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -18,4 +19,8 @@ public interface SecKillPageFeign {
     @ApiOperation(value = "秒杀商品详情页 - 生成")
     @GetMapping(value = "/seckill/page/general/{id}")
     RespResult general(@PathVariable("id") String id) throws Exception;
+
+    @ApiOperation(value = "秒杀商品详情页 - 删除指定活动的页面")
+    @DeleteMapping(value = "/seckill/page/deleByAct/{acid}")
+    RespResult deleByAct(@PathVariable("acid") String acid);
 }

@@ -15,4 +15,9 @@ public interface SecKillPageService {
      */
     void html(String id) throws Exception;
 
+    /**
+     * 删除秒杀
+     * @param id
+     */
+    void delete(String id);
 }

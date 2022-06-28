@@ -7,6 +7,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 /**
  * Author：蓝田_Loto<p>
  * Date：2022-06-27 16:57<p>
@@ -19,4 +21,8 @@ public interface SecKillGoodsFeign {
     @ApiOperation(value = "根据ID查询秒杀商品详情")
     @GetMapping(value = "/seckill/goods/{id}")
     RespResult<SecKillGoods> one(@PathVariable("id") String id);
+
+    @ApiOperation(value = "根据活动查询秒杀商品集合")
+    @GetMapping(value = "/seckill/goods/act/{acid}")
+    RespResult<List<SecKillGoods>> actGoods(@PathVariable("acid") String acid);
 }

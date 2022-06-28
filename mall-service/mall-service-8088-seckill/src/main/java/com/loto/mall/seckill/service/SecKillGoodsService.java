@@ -3,6 +3,8 @@ package com.loto.mall.seckill.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.loto.mall.api.seckill.model.SecKillGoods;
 
+import java.util.List;
+
 /**
  * Author：蓝田_Loto<p>
  * Date：2022-06-27 14:44<p>
@@ -11,5 +13,10 @@ import com.loto.mall.api.seckill.model.SecKillGoods;
  */
 
 public interface SecKillGoodsService extends IService<SecKillGoods> {
-
+    /**
+     * 根据活动ID查询商品信息
+     * @param acid
+     * @return
+     */
+    List<SecKillGoods> actGoods(String acid);
 }
