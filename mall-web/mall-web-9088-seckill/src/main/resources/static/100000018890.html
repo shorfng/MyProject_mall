@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
@@ -1828,7 +1828,7 @@
                     <!-- 默认第一个预览 -->
                     <div id="preview" class="spec-preview">
 							<span class="jqzoom">
-								<img th:jqimg="${images[0]}" th:src="${images[0]}" style="max-height: 400px;max-width: 400px;" width="400" height="400"/>
+								<img jqimg="https://img10.360buyimg.com/n7/jfs/t1/51315/11/15577/93321/5dc93712Ed15f694a/1c5e5965995fcd86.jpg" src="https://img10.360buyimg.com/n7/jfs/t1/51315/11/15577/93321/5dc93712Ed15f694a/1c5e5965995fcd86.jpg" style="max-height: 400px;max-width: 400px;" width="400" height="400"/>
 							</span>
                     </div>
 
@@ -1838,8 +1838,8 @@
                         <!--左右按钮-->
                         <div class="items">
                             <ul>
-                                <li th:each="image:${images}">
-                                    <img th:src="${image}" th:bimg="${image}" onmousemove="preview(this)"/>
+                                <li>
+                                    <img src="https://img10.360buyimg.com/n7/jfs/t1/51315/11/15577/93321/5dc93712Ed15f694a/1c5e5965995fcd86.jpg" bimg="https://img10.360buyimg.com/n7/jfs/t1/51315/11/15577/93321/5dc93712Ed15f694a/1c5e5965995fcd86.jpg" onmousemove="preview(this)"/>
                                 </li>
                             </ul>
                         </div>
@@ -1850,7 +1850,8 @@
             <div class="fr itemInfo-wrap" id="app">
 
                 <div class="sku-name">
-                    <h4 th:text="${item.name}"></h4>
+                    <h4>京东超市
+              荣耀手环4 标准版 智能运动 AMOLED彩屏触控 50米防水+泳姿识别 实时心率检测 科学睡眠 适配安卓&amp;iOS 陨石黑</h4>
                 </div>
 
                 <div>
@@ -1864,7 +1865,7 @@
 
                         <div class="fl price">
                             <i>¥</i>
-                            <em th:text="${item.seckillPrice}"></em>
+                            <em>129</em>
                             <span>降价通知</span>
                         </div>
 
