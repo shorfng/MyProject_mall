@@ -14,7 +14,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.loto.mall.seckill.mapper")
-@EnableFeignClients(basePackages = {"com.loto.mall.api.seckill.feign"})
+@EnableFeignClients(basePackages = {"com.loto.mall.api.druid.feign"})
 public class MallSecKillApplication {
     public static void main(String[] args) {
         SpringApplication.run(MallSecKillApplication.class, args);

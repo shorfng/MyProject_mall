@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-
 /**
  * Author：蓝田_Loto<p>
  * Date：2022-06-27 14:14<p>
@@ -30,14 +28,11 @@ public class SecKillGoods {
     private String images;
     private String content;
     private Integer price;
-    //@Column(name = "seckill_price")
     private Integer seckillPrice;
     private Integer num;
-    //@Column(name = "store_count")
     private Integer storeCount;
-    //@Column(name = "activity_id")
     private String activityId;
 
     // 商品锁定状态（0未锁定 1已锁定）
-    //private Integer islock;
+    private Integer isLock;
 }

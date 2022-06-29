@@ -19,4 +19,11 @@ public interface SecKillGoodsService extends IService<SecKillGoods> {
      * @return
      */
     List<SecKillGoods> actGoods(String acid);
+
+
+    /**
+     * 热门商品分离
+     * @param uri 商品ID
+     */
+    void isolation(String uri);
 }
