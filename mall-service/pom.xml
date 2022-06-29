@@ -14,9 +14,10 @@
     <description>所有微服务工程的父工程</description>
 
     <modules>
-        <module>mall-service-8081-goods</module>
         <module>mall-service-8071-cephfile</module>
         <module>mall-service-8072-canal</module>
+
+        <module>mall-service-8081-goods</module>
         <module>mall-service-8082-search</module>
         <module>mall-service-8084-cart</module>
         <module>mall-service-8085-user</module>
