@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.loto.mall.api.druid.model.HotGoods;
 import com.loto.mall.druid.mapper.HotGoodsMapper;
 import com.loto.mall.druid.service.HotGoodsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Author：蓝田_Loto<p>
@@ -15,5 +18,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HotGoodsServiceImpl extends ServiceImpl<HotGoodsMapper, HotGoods> implements HotGoodsService {
+    @Autowired
+    private HotGoodsMapper hotGoodsMapper;
 
+    /**
+     * 查询前 N 条记录
+     *
+     * @param size
+     * @return
+     */
+    @Override
+    public List<HotGoods> topNum(Integer size) {
+        return hotGoodsMapper.topNum(size);
+    }
 }

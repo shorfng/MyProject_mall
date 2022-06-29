@@ -2,6 +2,10 @@ package com.loto.mall.druid.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.loto.mall.api.druid.model.HotGoods;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * Author：蓝田_Loto<p>
@@ -10,6 +14,14 @@ import com.loto.mall.api.druid.model.HotGoods;
  * Function：
  */
 
+@Mapper
 public interface HotGoodsMapper extends BaseMapper<HotGoods> {
-
+    /**
+     * 查询前 N 条记录
+     *
+     * @param size
+     * @return
+     */
+    @Select("select ip, uri, __time as accessTime from mslog limit #{size}")
+    List<HotGoods> topNum(Integer size);
 }
