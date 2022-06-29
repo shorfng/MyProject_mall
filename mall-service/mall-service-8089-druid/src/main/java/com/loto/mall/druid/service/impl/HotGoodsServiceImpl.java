@@ -6,6 +6,7 @@ import com.loto.mall.druid.mapper.HotGoodsMapper;
 import com.loto.mall.druid.service.HotGoodsService;
 import com.loto.mall.druid.utils.DruidPage;
 import com.loto.mall.druid.utils.TimeUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,5 +87,20 @@ public class HotGoodsServiceImpl extends ServiceImpl<HotGoodsMapper, HotGoods> i
     @Override
     public List<HotGoods> searchTime(Integer size, Integer hour) {
         return hotGoodsMapper.searchTime(size, TimeUtil.beforeTime(TimeUtil.unit_hour, hour));
+    }
+
+    /**
+     * 时间查询（排除指定数据）
+     *
+     * @param size
+     * @param hour
+     * @param urls
+     * @return
+     */
+    @Override
+    public List<HotGoods> searchExclude(Integer size, Integer hour, String[] urls) {
+        // 拼接 urls ---> 123.html','2342.html','324234.html
+        String allUrls = StringUtils.join(urls, "','");
+        return hotGoodsMapper.searchExclude(size, TimeUtil.beforeTime(TimeUtil.unit_hour, hour), allUrls);
     }
 }

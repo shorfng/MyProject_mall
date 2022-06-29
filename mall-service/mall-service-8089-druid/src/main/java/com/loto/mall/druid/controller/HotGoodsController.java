@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -64,7 +66,7 @@ public class HotGoodsController {
         return RespResult.ok(druidPage);
     }
 
-    @ApiOperation(value = " 时间查询（查询过去几小时前N条记录）")
+    @ApiOperation(value = "时间查询（查询过去几小时前N条记录）")
     @GetMapping(value = "/searchTime/{size}/{hour}")
     public RespResult<List<HotGoods>> searchTime(@PathVariable("size") Integer size,
                                                  @PathVariable("hour") Integer hour) {
@@ -73,4 +75,13 @@ public class HotGoodsController {
         return RespResult.ok(hotGoods);
     }
 
+    @ApiOperation(value = "时间查询（排除指定数据）")
+    @PostMapping(value = "/searchExclude/{size}/{hour}")
+    public RespResult<List<HotGoods>> searchExclude(@PathVariable("size") Integer size,
+                                                    @PathVariable("hour") Integer hour,
+                                                    @RequestBody String[] urls) {
+
+        List<HotGoods> hotGoods = hotGoodsService.searchExclude(size, hour, urls);
+        return RespResult.ok(hotGoods);
+    }
 }

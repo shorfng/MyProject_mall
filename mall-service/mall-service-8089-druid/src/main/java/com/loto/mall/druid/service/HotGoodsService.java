@@ -46,4 +46,13 @@ public interface HotGoodsService extends IService<HotGoods> {
      * @return
      */
     List<HotGoods> searchTime(Integer size, Integer hour);
+
+    /**
+     * 时间查询（排除指定数据）
+     * @param size
+     * @param hour
+     * @param urls
+     * @return
+     */
+    List<HotGoods> searchExclude(Integer size, Integer hour, String[] urls);
 }

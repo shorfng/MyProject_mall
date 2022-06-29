@@ -56,4 +56,14 @@ public interface HotGoodsMapper extends BaseMapper<HotGoods> {
     @Select("select ip, uri, __time as accessTime from mslog where __time>= timestamp '${time}' limit #{size}")
     List<HotGoods> searchTime(@Param("size") Integer size, @Param("time") String time);
 
+    /**
+     * 时间查询（排除指定数据）
+     *
+     * @param size
+     * @param time
+     * @param urls
+     * @return
+     */
+    @Select("select ip, uri, __time as accessTime from mslog where __time>= timestamp '${time}' and uri not in('${urls}') limit #{size}")
+    List<HotGoods> searchExclude(@Param("size") Integer size, @Param("time") String time, @Param("urls") String urls);
 }
