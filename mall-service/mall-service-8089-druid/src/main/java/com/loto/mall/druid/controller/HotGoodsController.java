@@ -2,6 +2,7 @@ package com.loto.mall.druid.controller;
 
 import com.loto.mall.api.druid.model.HotGoods;
 import com.loto.mall.druid.service.HotGoodsService;
+import com.loto.mall.druid.utils.DruidPage;
 import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,5 +40,15 @@ public class HotGoodsController {
     public RespResult<List<HotGoods>> topNum(@PathVariable(value = "size") Integer size) {
         List<HotGoods> hotGoods = hotGoodsService.topNum(size);
         return RespResult.ok(hotGoods);
+    }
+
+    @ApiOperation(value = "分页查询")
+    @GetMapping(value = "/page/{page}/{size}")
+    public RespResult<DruidPage<List<HotGoods>>> pageList(
+            @PathVariable(value = "page") Integer page,
+            @PathVariable(value = "size") Integer size) {
+
+        DruidPage<List<HotGoods>> druidPage = hotGoodsService.pageList(size, page);
+        return RespResult.ok(druidPage);
     }
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.loto.mall.api.druid.model.HotGoods;
 import com.loto.mall.druid.mapper.HotGoodsMapper;
 import com.loto.mall.druid.service.HotGoodsService;
+import com.loto.mall.druid.utils.DruidPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,25 @@ public class HotGoodsServiceImpl extends ServiceImpl<HotGoodsMapper, HotGoods> i
     @Override
     public List<HotGoods> topNum(Integer size) {
         return hotGoodsMapper.topNum(size);
+    }
+
+    /**
+     * 分页查询
+     *
+     * @param size
+     * @param page
+     * @return
+     */
+    @Override
+    public DruidPage<List<HotGoods>> pageList(Integer size, Integer page) {
+        // 计算偏移量
+        DruidPage<List<HotGoods>> druidPage = new DruidPage<>(page, size);
+
+        // 查询总数
+        Integer total = hotGoodsMapper.selectCount(null);
+
+        // 查询集合
+        List<HotGoods> hotGoods = hotGoodsMapper.pageList(size, druidPage.getOffset());
+        return druidPage.pages(hotGoods, total);
     }
 }
