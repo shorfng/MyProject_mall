@@ -5,6 +5,7 @@ import com.loto.mall.api.druid.model.HotGoods;
 import com.loto.mall.druid.utils.DruidPage;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author：蓝田_Loto<p>
@@ -55,4 +56,14 @@ public interface HotGoodsService extends IService<HotGoods> {
      * @return
      */
     List<HotGoods> searchExclude(Integer size, Integer hour, String[] urls);
+
+    /**
+     * 查询热门商品（最近1小时内，根据查询数量排序，如果已经是分析过的热门商品，需要把它排除）
+     * @param size
+     * @param hour
+     * @param urls
+     * @param max
+     * @return
+     */
+    List<Map<String, String>> searchHotGoods(Integer size, Integer hour, String[] urls, Integer max);
 }

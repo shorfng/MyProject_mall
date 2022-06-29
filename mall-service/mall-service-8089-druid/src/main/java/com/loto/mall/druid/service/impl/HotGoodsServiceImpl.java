@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author：蓝田_Loto<p>
@@ -102,5 +103,21 @@ public class HotGoodsServiceImpl extends ServiceImpl<HotGoodsMapper, HotGoods> i
         // 拼接 urls ---> 123.html','2342.html','324234.html
         String allUrls = StringUtils.join(urls, "','");
         return hotGoodsMapper.searchExclude(size, TimeUtil.beforeTime(TimeUtil.unit_hour, hour), allUrls);
+    }
+
+    /**
+     * 查询热门商品（最近1小时内，根据查询数量排序，如果已经是分析过的热门商品，需要把它排除）
+     *
+     * @param size
+     * @param hour
+     * @param urls
+     * @param max
+     * @return
+     */
+    @Override
+    public List<Map<String, String>> searchHotGoods(Integer size, Integer hour, String[] urls, Integer max) {
+        // 拼接 urls ---> 123.html','2342.html','324234.html
+        String allUrls = StringUtils.join(urls, "','");
+        return hotGoodsMapper.searchHotGoods(size, TimeUtil.beforeTime(TimeUtil.unit_hour, hour), allUrls, max);
     }
 }

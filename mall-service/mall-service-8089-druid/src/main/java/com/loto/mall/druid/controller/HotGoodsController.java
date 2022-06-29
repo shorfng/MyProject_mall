@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author：蓝田_Loto<p>
@@ -84,4 +85,16 @@ public class HotGoodsController {
         List<HotGoods> hotGoods = hotGoodsService.searchExclude(size, hour, urls);
         return RespResult.ok(hotGoods);
     }
+
+    @ApiOperation(value = "查询热门商品（最近1小时内，根据查询数量排序，如果已经是分析过的热门商品，需要把它排除）")
+    @PostMapping(value = "/searchHotGoods/{size}/{hour}/{max}")
+    public RespResult<List<Map<String, String>>> searchHotGoods(@PathVariable("size") Integer size,
+                                                                @PathVariable("hour") Integer hour,
+                                                                @PathVariable("max") Integer max,
+                                                                @RequestBody String[] urls) {
+
+        List<Map<String, String>> hotGoods = hotGoodsService.searchHotGoods(size, hour, urls, max);
+        return RespResult.ok(hotGoods);
+    }
+
 }

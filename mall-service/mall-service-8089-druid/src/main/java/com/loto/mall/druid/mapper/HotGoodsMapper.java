@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author：蓝田_Loto<p>
@@ -66,4 +67,15 @@ public interface HotGoodsMapper extends BaseMapper<HotGoods> {
      */
     @Select("select ip, uri, __time as accessTime from mslog where __time>= timestamp '${time}' and uri not in('${urls}') limit #{size}")
     List<HotGoods> searchExclude(@Param("size") Integer size, @Param("time") String time, @Param("urls") String urls);
+
+    /**
+     * 查询热门商品（最近1小时内，根据查询数量排序，如果已经是分析过的热门商品，需要把它排除）
+     * @param size
+     * @param time
+     * @param urls
+     * @param max
+     * @return
+     */
+    @Select("select uri, count(*) as viewCount from mslog where __time>=timestamp '${time}' and uri not in ('${urls}') group by uri having viewCount>#{max} order by viewCount desc limit #{size}")
+    List<Map<String, String>> searchHotGoods(@Param("size") Integer size, @Param("time") String time, @Param("urls") String urls, @Param("max") Integer max);
 }
