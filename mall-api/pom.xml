@@ -22,6 +22,7 @@
         <module>mall-api-order</module>
         <module>mall-api-pay</module>
         <module>mall-api-seckill</module>
+        <module>mall-api-druid</module>
     </modules>
 
     <properties>

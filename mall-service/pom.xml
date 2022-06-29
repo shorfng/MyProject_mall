@@ -23,6 +23,7 @@
         <module>mall-service-8086-order</module>
         <module>mall-service-8087-pay</module>
         <module>mall-service-8088-seckill</module>
+        <module>mall-service-8089-druid</module>
     </modules>
 
     <properties>
