@@ -2,6 +2,7 @@ package com.loto.mall.druid.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.loto.mall.api.druid.model.HotGoods;
+import com.loto.mall.druid.utils.DruidPage;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -35,5 +36,13 @@ public interface HotGoodsMapper extends BaseMapper<HotGoods> {
      */
     @Select("select ip, uri, __time as accessTime from mslog limit #{size} offset #{offset}")
     List<HotGoods> pageList(@Param("size") Integer size, @Param("offset") Long offset);
+
+    /**
+     * 分页查询 + 排序
+     * @param druidPage
+     * @return
+     */
+    @Select("select ip, uri, __time as accessTime FROM mslog order by ${sort} ${sortType} limit #{size} offset #{offset}")
+    List<HotGoods> pageListSort(DruidPage druidPage);
 
 }

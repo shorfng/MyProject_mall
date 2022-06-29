@@ -28,4 +28,14 @@ public interface HotGoodsService extends IService<HotGoods> {
      * @return
      */
     DruidPage<List<HotGoods>> pageList(Integer size, Integer page);
+
+    /**
+     * 分页查询 + 排序
+     * @param size
+     * @param page
+     * @param sort
+     * @param sortType
+     * @return
+     */
+    DruidPage<List<HotGoods>> pageListSort(Integer size, Integer page, String sort, String sortType);
 }

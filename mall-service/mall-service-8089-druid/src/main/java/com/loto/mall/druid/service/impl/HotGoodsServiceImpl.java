@@ -52,4 +52,26 @@ public class HotGoodsServiceImpl extends ServiceImpl<HotGoodsMapper, HotGoods> i
         List<HotGoods> hotGoods = hotGoodsMapper.pageList(size, druidPage.getOffset());
         return druidPage.pages(hotGoods, total);
     }
+
+    /**
+     * 分页查询 + 排序
+     *
+     * @param size
+     * @param page
+     * @param sort
+     * @param sortType
+     * @return
+     */
+    @Override
+    public DruidPage<List<HotGoods>> pageListSort(Integer size, Integer page, String sort, String sortType) {
+        // 计算偏移量
+        DruidPage<List<HotGoods>> druidPage = new DruidPage<List<HotGoods>>(page, size, sort, sortType);
+
+        // 查询总数
+        Integer total = hotGoodsMapper.selectCount(null);
+
+        // 查询集合
+        List<HotGoods> hotGoods = hotGoodsMapper.pageListSort(druidPage);
+        return druidPage.pages(hotGoods, total);
+    }
 }

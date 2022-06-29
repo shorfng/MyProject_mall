@@ -51,4 +51,16 @@ public class HotGoodsController {
         DruidPage<List<HotGoods>> druidPage = hotGoodsService.pageList(size, page);
         return RespResult.ok(druidPage);
     }
+
+    @ApiOperation(value = "分页查询 + 排序")
+    @GetMapping(value = "/page/{page}/{size}/{sort}/{sortType}")
+    public RespResult<DruidPage<List<HotGoods>>> pageListSort(
+            @PathVariable(value = "page") Integer page,
+            @PathVariable(value = "size") Integer size,
+            @PathVariable(value = "sort") String sort,
+            @PathVariable(value = "sortType") String sortType) {
+
+        DruidPage<List<HotGoods>> druidPage = hotGoodsService.pageListSort(size, page, sort, sortType);
+        return RespResult.ok(druidPage);
+    }
 }
