@@ -38,4 +38,12 @@ public interface HotGoodsService extends IService<HotGoods> {
      * @return
      */
     DruidPage<List<HotGoods>> pageListSort(Integer size, Integer page, String sort, String sortType);
+
+    /**
+     * 时间查询（查询过去几小时前N条记录）
+     * @param size
+     * @param hour
+     * @return
+     */
+    List<HotGoods> searchTime(Integer size, Integer hour);
 }

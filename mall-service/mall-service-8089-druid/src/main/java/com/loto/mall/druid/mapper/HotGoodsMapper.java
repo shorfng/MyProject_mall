@@ -39,10 +39,21 @@ public interface HotGoodsMapper extends BaseMapper<HotGoods> {
 
     /**
      * 分页查询 + 排序
+     *
      * @param druidPage
      * @return
      */
-    @Select("select ip, uri, __time as accessTime FROM mslog order by ${sort} ${sortType} limit #{size} offset #{offset}")
+    @Select("select ip, uri, __time as accessTime from mslog order by ${sort} ${sortType} limit #{size} offset #{offset}")
     List<HotGoods> pageListSort(DruidPage druidPage);
+
+    /**
+     * 时间查询（查询过去几小时前N条记录）
+     *
+     * @param size
+     * @param time
+     * @return
+     */
+    @Select("select ip, uri, __time as accessTime from mslog where __time>= timestamp '${time}' limit #{size}")
+    List<HotGoods> searchTime(@Param("size") Integer size, @Param("time") String time);
 
 }

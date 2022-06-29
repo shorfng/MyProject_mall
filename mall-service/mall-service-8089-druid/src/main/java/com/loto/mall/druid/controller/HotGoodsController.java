@@ -63,4 +63,14 @@ public class HotGoodsController {
         DruidPage<List<HotGoods>> druidPage = hotGoodsService.pageListSort(size, page, sort, sortType);
         return RespResult.ok(druidPage);
     }
+
+    @ApiOperation(value = " 时间查询（查询过去几小时前N条记录）")
+    @GetMapping(value = "/searchTime/{size}/{hour}")
+    public RespResult<List<HotGoods>> searchTime(@PathVariable("size") Integer size,
+                                                 @PathVariable("hour") Integer hour) {
+
+        List<HotGoods> hotGoods = hotGoodsService.searchTime(size, hour);
+        return RespResult.ok(hotGoods);
+    }
+
 }

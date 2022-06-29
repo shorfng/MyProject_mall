@@ -5,6 +5,7 @@ import com.loto.mall.api.druid.model.HotGoods;
 import com.loto.mall.druid.mapper.HotGoodsMapper;
 import com.loto.mall.druid.service.HotGoodsService;
 import com.loto.mall.druid.utils.DruidPage;
+import com.loto.mall.druid.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,5 +74,17 @@ public class HotGoodsServiceImpl extends ServiceImpl<HotGoodsMapper, HotGoods> i
         // 查询集合
         List<HotGoods> hotGoods = hotGoodsMapper.pageListSort(druidPage);
         return druidPage.pages(hotGoods, total);
+    }
+
+    /**
+     * 时间查询（查询过去几小时前N条记录）
+     *
+     * @param size
+     * @param hour
+     * @return
+     */
+    @Override
+    public List<HotGoods> searchTime(Integer size, Integer hour) {
+        return hotGoodsMapper.searchTime(size, TimeUtil.beforeTime(TimeUtil.unit_hour, hour));
     }
 }
