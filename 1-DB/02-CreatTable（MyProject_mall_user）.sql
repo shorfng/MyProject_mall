@@ -3615,36 +3615,39 @@ INSERT INTO `provinces` VALUES ('820000', '澳门特别行');
 -- ----------------------------
 -- Table structure for user_info
 -- ----------------------------
-DROP TABLE IF EXISTS `user_info`;
-CREATE TABLE `user_info`
+drop table if exists `user_info`;
+create table user_info
 (
-    `username`         varchar(50)  NOT NULL COMMENT '用户名',
-    `password`         varchar(100) NOT NULL COMMENT '密码，加密存储',
-    `phone`            varchar(20)  DEFAULT NULL COMMENT '注册手机号',
-    `email`            varchar(50)  DEFAULT NULL COMMENT '注册邮箱',
-    `created`          datetime     NOT NULL COMMENT '创建时间',
-    `updated`          datetime     NOT NULL COMMENT '修改时间',
-    `source_type`      varchar(1)   DEFAULT NULL COMMENT '会员来源（1 PC 2 H5 3 Android 4 IOS）',
-    `nick_name`        varchar(50)  DEFAULT NULL COMMENT '昵称',
-    `name`             varchar(50)  DEFAULT NULL COMMENT '真实姓名',
-    `status`           varchar(1)   DEFAULT NULL COMMENT '使用状态（1正常 0非正常）',
-    `head_pic`         varchar(150) DEFAULT NULL COMMENT '头像地址',
-    `qq`               varchar(20)  DEFAULT NULL COMMENT 'QQ号码',
-    `is_mobile_check`  varchar(1)   DEFAULT '0' COMMENT '手机是否验证 （0否 1是）',
-    `is_email_check`   varchar(1)   DEFAULT '0' COMMENT '邮箱是否检测（0否 1是）',
-    `sex`              varchar(1)   DEFAULT '1' COMMENT '性别（1男 0女）',
-    `user_level`       int(11) DEFAULT NULL COMMENT '会员等级',
-    `points`           int(11) DEFAULT NULL COMMENT '积分',
-    `experience_value` int(11) DEFAULT NULL COMMENT '经验值',
-    `birthday`         datetime     DEFAULT NULL COMMENT '出生年月日',
-    `last_login_time`  datetime     DEFAULT NULL COMMENT '最后登录时间',
-    `provinceid`       varchar(20)  DEFAULT NULL COMMENT '省份ID',
-    `cityid`           varchar(20)  DEFAULT NULL COMMENT '城市ID',
-    `areaid`           varchar(20)  DEFAULT NULL COMMENT '地区ID',
-    PRIMARY KEY (`username`),
-    UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+    user_name        varchar(50)            not null comment '用户名',
+    password         varchar(100)           not null comment '密码，加密存储',
+    phone            varchar(20)            null comment '注册手机号',
+    email            varchar(50)            null comment '注册邮箱',
+    create_time      datetime               not null comment '创建时间',
+    update__time     datetime               not null comment '修改时间',
+    source_type      varchar(1)             null comment '会员来源（1 pc 2 h5 3 android 4 ios）',
+    nick_name        varchar(50)            null comment '昵称',
+    name             varchar(50)            null comment '真实姓名',
+    status           varchar(1)             null comment '使用状态（1正常 0非正常）',
+    head_pic         varchar(150)           null comment '头像地址',
+    qq               varchar(20)            null comment 'qq号码',
+    is_mobile_check  varchar(1) default '0' null comment '手机是否验证 （0否 1是）',
+    is_email_check   varchar(1) default '0' null comment '邮箱是否检测（0否 1是）',
+    sex              varchar(1) default '1' null comment '性别（1男 0女）',
+    user_level       int                    null comment '会员等级',
+    points           int                    null comment '积分',
+    experience_value int                    null comment '经验值',
+    birthday         datetime               null comment '出生年月日',
+    last_login_time  datetime               null comment '最后登录时间',
+    province_id      varchar(20)            null comment '省份id',
+    city_id          varchar(20)            null comment '城市id',
+    area_id          varchar(20)            null comment '地区id',
+    roles_id         varchar(50)            not null comment '角色id',
+
+    primary key (`user_name`),
+    unique key `user_name` (`user_name`) using btree
+) engine=innodb default charset=utf8 comment='用户表';
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
+INSERT INTO MyProject_mall_user.user_info (user_name, password, phone, email, create_time, update__time, source_type, nick_name, name, status, head_pic, qq, is_mobile_check, is_email_check, sex, user_level, points, experience_value, birthday, last_login_time, province_id, city_id, area_id, roles_id) VALUES ('TD', '123456', '12345678912', null, '2022-06-30 17:29:44', '2022-06-30 17:29:39', null, null, 'TD', '1', null, null, '0', '0', '1', null, 1, null, null, null, null, null, null, '1,2');

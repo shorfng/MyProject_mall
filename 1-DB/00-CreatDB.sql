@@ -17,4 +17,7 @@ CREATE database if NOT EXISTS `MyProject_mall_pay` default character set utf8mb4
 # 创建数据库 - 秒杀
 CREATE database if NOT EXISTS `MyProject_mall_seckill` default character set utf8mb4 collate utf8mb4_unicode_ci;
 
+# 创建数据库 - 权限
+CREATE database if NOT EXISTS `MyProject_mall_permission` default character set utf8mb4 collate utf8mb4_unicode_ci;
+
 
