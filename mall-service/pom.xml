@@ -25,6 +25,7 @@
         <module>mall-service-8087-pay</module>
         <module>mall-service-8088-seckill</module>
         <module>mall-service-8089-druid</module>
+        <module>mall-service-8090-permission</module>
     </modules>
 
     <properties>

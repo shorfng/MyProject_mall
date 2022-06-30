@@ -3,8 +3,8 @@ package com.loto.mall.gateway.lock;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Author：蓝田_Loto<p>
@@ -13,8 +13,14 @@ import org.springframework.context.annotation.Configuration;
  * Function：
  */
 
-@Configuration
+//@Configuration
 public class RedissonLock {
+    @Value("${spring.redis.host}")
+    private String redisHost;
+
+    @Value("${spring.redis.password}")
+    private String redisPassword;
+
     /***
      * 创建RedissonClient对象
      *      创建锁、解锁
@@ -37,7 +43,7 @@ public class RedissonLock {
         //                "redis://192.168.126.200:7006");
 
         // 单机实现
-        config.useSingleServer().setAddress("redis://192.168.126.200:6379");
+        config.useSingleServer().setAddress("redis://" + redisHost + ":6379").setPassword(redisPassword);
 
         // 创建 RedissonClient
         return Redisson.create(config);

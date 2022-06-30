@@ -45,21 +45,21 @@ public class GatewayFilter implements GlobalFilter, Ordered {
         // 获取用户请求的 uri
         String uri = request.getURI().getPath();
 
-        // 过滤uri是否有效
+        // 判断过滤 uri 是否有效
         if (!authorizationInterceptor.isInvalid(uri)) {
             endProcess(exchange, 404, "url bad");
             return chain.filter(exchange);
         }
 
         // 判断是否需要拦截
-        //if (!authorizationInterceptor.isIntercept(exchange)) {
-        //    return chain.filter(exchange);
-        //}
+        if (!authorizationInterceptor.isIntercept(exchange)) {
+            // 不拦截
+            return chain.filter(exchange);
+        }
 
         // 令牌校验
         Map<String, Object> resultMap = authorizationInterceptor.tokenIntercept(exchange);
-        //if (resultMap == null || !authorizationInterceptor.rolePermission(exchange, resultMap)) {
-        if (resultMap == null) {
+        if (resultMap == null || !authorizationInterceptor.rolePermission(exchange, resultMap)) {
             // 令牌校验失败 / 没有权限
             endProcess(exchange, 401, "Access denied");
             return chain.filter(exchange);
@@ -117,8 +117,16 @@ public class GatewayFilter implements GlobalFilter, Ordered {
         }
     }
 
+    /**
+     * gateway 过滤器顺序
+     * @return
+     */
     @Override
     public int getOrder() {
-        return 0;
+        // RouteToRequestUrlFilter（其中的 order=10000）
+        // LoadBalancerClientFilter（其中的 order=10100）
+
+        // GatewayFilter（将此过滤器的顺序调整到 RouteToRequestUrlFilter 和 LoadBalancerClientFilter 之间 ）
+        return 10001;
     }
 }
