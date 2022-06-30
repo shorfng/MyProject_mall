@@ -23,6 +23,7 @@
         <module>mall-api-pay</module>
         <module>mall-api-seckill</module>
         <module>mall-api-druid</module>
+        <module>mall-api-permission</module>
     </modules>
 
     <properties>

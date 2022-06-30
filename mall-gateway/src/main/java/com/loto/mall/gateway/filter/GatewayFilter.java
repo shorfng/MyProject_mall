@@ -1,6 +1,7 @@
 package com.loto.mall.gateway.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.loto.mall.gateway.interceptor.AuthorizationInterceptor;
 import com.loto.mall.gateway.queue.HotQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -27,6 +28,9 @@ public class GatewayFilter implements GlobalFilter, Ordered {
     @Autowired
     private HotQueue hotQueue;
 
+    @Autowired
+    private AuthorizationInterceptor authorizationInterceptor;
+
     /**
      * 执行拦截处理
      *
@@ -38,9 +42,66 @@ public class GatewayFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
-        // 用户名
-        String username = "TD";
+        // 获取用户请求的 uri
+        String uri = request.getURI().getPath();
 
+        // 过滤uri是否有效
+        if (!authorizationInterceptor.isInvalid(uri)) {
+            endProcess(exchange, 404, "url bad");
+            return chain.filter(exchange);
+        }
+
+        // 判断是否需要拦截
+        //if (!authorizationInterceptor.isIntercept(exchange)) {
+        //    return chain.filter(exchange);
+        //}
+
+        // 令牌校验
+        Map<String, Object> resultMap = authorizationInterceptor.tokenIntercept(exchange);
+        //if (resultMap == null || !authorizationInterceptor.rolePermission(exchange, resultMap)) {
+        if (resultMap == null) {
+            // 令牌校验失败 / 没有权限
+            endProcess(exchange, 401, "Access denied");
+            return chain.filter(exchange);
+        }
+
+        // 秒杀过滤
+        if (uri.equals("/seckill/order")) {
+            secKillFilter(exchange, request, resultMap.get("username").toString());
+            return chain.filter(exchange);
+        }
+
+        // NOT_HOT 直接由后端服务处理
+        return chain.filter(exchange);
+    }
+
+    /**
+     * 结束程序
+     *
+     * @param exchange
+     * @param code
+     * @param message
+     */
+    public void endProcess(ServerWebExchange exchange, Integer code, String message) {
+        // 响应状态码200
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("code", code);
+        resultMap.put("message", message);
+
+        exchange.getResponse().setStatusCode(HttpStatus.OK);
+        exchange.getResponse().setComplete();
+        exchange.getResponse().getHeaders().add("message", JSON.toJSONString(resultMap));
+    }
+
+    /**
+     * 秒杀过滤
+     *
+     * @param exchange
+     * @param request
+     * @param username
+     * @return
+     */
+    private void secKillFilter(ServerWebExchange exchange, ServerHttpRequest request, String username) {
         // 商品ID
         String id = request.getQueryParams().getFirst("id");
 
@@ -52,17 +113,8 @@ public class GatewayFilter implements GlobalFilter, Ordered {
 
         // QUEUE_ING、HAS_QUEUE
         if (result == HotQueue.QUEUE_ING || result == HotQueue.HAS_QUEUE) {
-            // 响应状态码 200
-            Map<String, Object> resultMap = new HashMap<String, Object>();
-            resultMap.put("type", "hot");
-            resultMap.put("code", result);
-            exchange.getResponse().setStatusCode(HttpStatus.OK);
-            exchange.getResponse().setComplete();
-            exchange.getResponse().getHeaders().add("message", JSON.toJSONString(resultMap));
+            endProcess(exchange, result, "hot");
         }
-
-        // NOT_HOT 直接由后端服务处理
-        return chain.filter(exchange);
     }
 
     @Override
