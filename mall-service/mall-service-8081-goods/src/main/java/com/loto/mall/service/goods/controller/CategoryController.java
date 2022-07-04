@@ -6,6 +6,7 @@ import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/category")
 @Api(value = "CategoryController", tags = "商品类目")
+@CrossOrigin
 public class CategoryController {
     @Autowired
     private ICategoryService categoryService;

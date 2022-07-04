@@ -7,6 +7,7 @@ import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/sku")
 @Api(value = "SkuController", tags = "商品管理（每个产品信息）")
+@CrossOrigin
 public class SkuController {
     @Autowired
     private ISkuService skuService;
