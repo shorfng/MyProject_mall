@@ -45,8 +45,9 @@ public class GatewayFilter implements GlobalFilter, Ordered {
         // 获取用户请求的 uri
         String uri = request.getURI().getPath();
 
-        // 判断过滤 uri 是否有效
+        // 判断过滤 uri 是否有效（使用布隆过滤器）
         if (!authorizationInterceptor.isInvalid(uri)) {
+            // uri无效，结束程序，返回404
             endProcess(exchange, 404, "url bad");
             return chain.filter(exchange);
         }

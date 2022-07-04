@@ -2,6 +2,8 @@ package com.loto.mall.permission.Init;
 
 import com.loto.mall.api.permission.model.Permission;
 import com.loto.mall.permission.service.PermissionService;
+import org.redisson.api.RBloomFilter;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -29,8 +31,8 @@ public class InitPermission implements ApplicationRunner {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    //@Autowired
-    //private RedissonClient redissonClient;
+    @Autowired
+    private RedissonClient redissonClient;
 
     /**
      * 权限初始化加载
@@ -58,11 +60,12 @@ public class InitPermission implements ApplicationRunner {
         redisTemplate.boundHashOps("RolePermissionMap").putAll(roleMap);
 
         // 存储权限判断部分uri到布隆过滤器中 - 完全匹配
-        //RBloomFilter<String> filters = redissonClient.getBloomFilter("UriBloomFilterArray");
-        //filters.tryInit(1000000L, 0.0001);
-        //for (Permission permission : permissionMatch0) {
-        //    filters.add(permission.getUrl());
-        //}
+        RBloomFilter<String> filters = redissonClient.getBloomFilter("UriBloomFilterArray");
+        filters.tryInit(1000000L, 0.0001);   // 设置布隆过滤器的长度和精度
+        for (Permission permission : permissionMatch0) {
+            // 添加到布隆过滤器
+            filters.add(permission.getUrl());
+        }
     }
 
     /**

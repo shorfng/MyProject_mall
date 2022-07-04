@@ -6,6 +6,8 @@ import com.loto.mall.api.permission.model.Permission;
 import com.loto.mall.gateway.utils.IPUtils;
 import com.loto.mall.util.security.JwtToken;
 import com.loto.mall.util.security.MD5;
+import org.redisson.api.RBloomFilter;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -28,22 +30,22 @@ import java.util.Set;
 
 @Component
 public class AuthorizationInterceptor {
-    //@Autowired
-    //private RedissonClient redissonClient;
+    @Autowired
+    private RedissonClient redissonClient;
 
     @Autowired
     private StringRedisTemplate redisTemplate;
 
     /**
-     * 判断 uri 是否为有效路径
+     * 判断 uri 是否为有效路径（使用布隆过滤器）
      *
      * @param uri
      * @return
      */
     public Boolean isInvalid(String uri) {
-        //RBloomFilter<String> uriBloomFilterArray = redissonClient.getBloomFilter("UriBloomFilterArray");
-        //return uriBloomFilterArray.contains(uri);
-        return true;
+        // 从 Redis 中获取布隆过滤器
+        RBloomFilter<String> uriBloomFilterArray = redissonClient.getBloomFilter("UriBloomFilterArray");
+        return uriBloomFilterArray.contains(uri);
     }
 
     /**
@@ -65,7 +67,8 @@ public class AuthorizationInterceptor {
         // 从 Redis 缓存中进行匹配
         // 0:完全匹配
         String permissionsMatch0String = redisTemplate.boundHashOps("RolePermissionAll").get("PermissionMatch0").toString();
-        List<Permission> permissionsMatch0 = JSON.parseObject(permissionsMatch0String, new TypeReference<>() {});
+        List<Permission> permissionsMatch0 = JSON.parseObject(permissionsMatch0String, new TypeReference<>() {
+        });
 
         if (permissionsMatch0 != null) {
             // TODO: 2022/6/30
@@ -131,7 +134,8 @@ public class AuthorizationInterceptor {
         for (String role : roles) {
             // 获取完全匹配权限集合
             String rolePermissionMapValue = redisTemplate.boundHashOps("RolePermissionMap").get("Role_0_" + role).toString();
-            Set<Permission> rolePermissionMapValueSet = JSON.parseObject(rolePermissionMapValue, new TypeReference<>() {});
+            Set<Permission> rolePermissionMapValueSet = JSON.parseObject(rolePermissionMapValue, new TypeReference<>() {
+            });
 
             if (rolePermissionMapValueSet == null) {
                 continue;
