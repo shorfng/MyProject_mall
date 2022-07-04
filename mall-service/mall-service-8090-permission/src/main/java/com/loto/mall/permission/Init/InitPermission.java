@@ -59,10 +59,19 @@ public class InitPermission implements ApplicationRunner {
         // 所有角色权限
         redisTemplate.boundHashOps("RolePermissionMap").putAll(roleMap);
 
-        // 存储权限判断部分uri到布隆过滤器中 - 完全匹配
+        // 创建布隆过滤器 - UriBloomFilterArray
         RBloomFilter<String> filters = redissonClient.getBloomFilter("UriBloomFilterArray");
         filters.tryInit(1000000L, 0.0001);   // 设置布隆过滤器的长度和精度
+
+        // 存储权限 uri 到布隆过滤器中 - 完全匹配
         for (Permission permission : permissionMatch0) {
+            // 添加到布隆过滤器
+            filters.add(permission.getUrl());
+        }
+
+        // 存储权限 uri 到布隆过滤器中 - 通配符匹配
+        // TODO: 2022/7/4 暂时未测试
+        for (Permission permission : permissionMatch1) {
             // 添加到布隆过滤器
             filters.add(permission.getUrl());
         }
