@@ -69,19 +69,25 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <!-- 基于Redis实现限流 -->
+        <!-- 基于 Redis 作为令牌桶进行限流 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
             <version>2.2.10.RELEASE</version>
         </dependency>
 
-
         <!-- Redisson（Redis 布隆过滤器使用） -->
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
             <version>3.8.2</version>
+        </dependency>
+
+        <!-- 基于 Sentinel 进行限流 -->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
+            <version>1.8.0</version>
         </dependency>
     </dependencies>
 </project>
