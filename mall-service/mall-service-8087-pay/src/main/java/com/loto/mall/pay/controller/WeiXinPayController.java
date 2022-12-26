@@ -1,7 +1,6 @@
 package com.loto.mall.pay.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.github.wxpay.sdk.WXPayConstants;
 import com.github.wxpay.sdk.WXPayUtil;
 import com.loto.mall.api.pay.model.PayLog;

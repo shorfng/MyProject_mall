@@ -1,7 +1,6 @@
 package com.loto.mall.detail.controller;
 
 import com.loto.mall.detail.service.IDetailService;
-import com.loto.mall.detail.service.impl.DetailServiceImpl;
 import com.loto.mall.util.common.RespResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

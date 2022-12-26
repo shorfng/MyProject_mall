@@ -1,7 +1,5 @@
 package com.loto.mall;
 
-import com.loto.mall.config.RedisConfig;
-import com.loto.mall.config.StartConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

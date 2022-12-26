@@ -2,9 +2,9 @@ package com.loto.mall.canal.listener;
 
 import com.alibaba.fastjson.JSON;
 import com.loto.mall.api.detail.feign.DetailFeign;
+import com.loto.mall.api.goods.model.Sku;
 import com.loto.mall.api.search.feign.SkuSearchFeign;
 import com.loto.mall.api.search.model.SkuSearch;
-import com.loto.mall.api.goods.model.Sku;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

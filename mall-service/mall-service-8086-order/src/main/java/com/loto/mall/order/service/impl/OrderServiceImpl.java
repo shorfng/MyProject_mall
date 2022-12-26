@@ -15,7 +15,6 @@ import com.loto.mall.order.mapper.OrderRefundMapper;
 import com.loto.mall.order.mapper.OrderSkuMapper;
 import com.loto.mall.order.service.IOrderService;
 import com.loto.mall.util.common.RespResult;
-import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
