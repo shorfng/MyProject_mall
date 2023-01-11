@@ -26,10 +26,27 @@
     </modules>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 设置编译版本 -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
 
-        <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
+        <mall-api-seckill.version>1.0-SNAPSHOT</mall-api-seckill.version>
+        <mall-api-cart.version>1.0-SNAPSHOT</mall-api-cart.version>
+        <mall-api-goods.version>1.0-SNAPSHOT</mall-api-goods.version>
+        <mall-api-search.version>1.0-SNAPSHOT</mall-api-search.version>
+
+        <spring-cloud-alibaba-dependencies.version>2.2.1.RELEASE</spring-cloud-alibaba-dependencies.version>
+        <mybatis-plus-boot-starter.version>3.3.2</mybatis-plus-boot-starter.version>
+
+        <fastjson.version>1.2.51</fastjson.version>
+        <bcprov-jdk16.version>1.46</bcprov-jdk16.version>
+        <java-jwt.version>3.12.1</java-jwt.version>
+
+        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        <swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version>
+        <swagger-annotations.version>1.5.22</swagger-annotations.version>
+        <swagger-models.version>1.5.22</swagger-models.version>
     </properties>
 
     <dependencies>
@@ -58,13 +75,12 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
+            <version>${springfox-swagger2.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
+            <version>${springfox-swagger2.version}</version>
         </dependency>
 
         <!-- swagger图形化接口 -->
@@ -72,20 +88,19 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>1.9.6</version>
+            <version>${swagger-bootstrap-ui.version}</version>
         </dependency>
 
         <!-- 两个配置解决 NumberFormatException -->
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <version>1.5.22</version>
+            <version>${swagger-annotations.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-models</artifactId>
-            <version>1.5.22</version>
+            <version>${swagger-models.version}</version>
         </dependency>
     </dependencies>
 
@@ -94,9 +109,61 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
+                <version>${spring-cloud-alibaba-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.loto.mall</groupId>
+                <artifactId>mall-api-seckill</artifactId>
+                <version>${mall-api-seckill.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.loto.mall</groupId>
+                <artifactId>mall-api-cart</artifactId>
+                <version>${mall-api-cart.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.loto.mall</groupId>
+                <artifactId>mall-api-goods</artifactId>
+                <version>${mall-api-goods.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.loto.mall</groupId>
+                <artifactId>mall-api-search</artifactId>
+                <version>${mall-api-search.version}</version>
+            </dependency>
+
+            <!-- MyBatis Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+
+            <!-- AES 算法依赖包-->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk16</artifactId>
+                <version>${bcprov-jdk16.version}</version>
+            </dependency>
+
+            <!-- Signature 验签使用 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- JWT令牌 -->
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

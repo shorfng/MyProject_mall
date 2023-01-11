@@ -21,7 +21,6 @@
         <dependency>
             <groupId>com.loto.mall</groupId>
             <artifactId>mall-api-search</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
