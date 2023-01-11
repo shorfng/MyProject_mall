@@ -38,10 +38,9 @@ public class InitPermission implements ApplicationRunner {
      * 权限初始化加载
      *
      * @param args incoming application arguments
-     * @throws Exception
      */
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         // 加载所有权限
         List<Permission> permissionMatch0 = permissionService.findByMatch(0);  // 0 完全匹配过滤
         List<Permission> permissionMatch1 = permissionService.findByMatch(1);  // 1 通配符匹配
